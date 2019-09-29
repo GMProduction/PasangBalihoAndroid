@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Pasang Baliho</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email_hint">email</string>
+    <string name="password_hint">password</string>
+    <string name="sign_in_label">sign in</string>
+    <string name="sign_up_label">sign up</string>
+    <string name="or">OR</string>
+    <string name="sign_in_google_label">sign in with google</string>
+    <string name="image_aplikasi">image_aplikasi</string>
+</resources>
