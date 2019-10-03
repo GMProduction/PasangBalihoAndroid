@@ -9,6 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.genossys.pasangbaliho.R
+import com.genossys.pasangbaliho.data.APIService
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AccountFragment : Fragment() {
 
@@ -22,10 +28,16 @@ class AccountFragment : Fragment() {
         accountViewModel =
             ViewModelProviders.of(this).get(AccountViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_account, container, false)
-        val textView: TextView = root.findViewById(R.id.text_account)
-        accountViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+
+        val apiService = APIService()
+        GlobalScope.launch(Dispatchers.Main){
+            val adversiterRsponse = apiService.getAdvertiserData("5").await()
+            textview_email.text = adversiterRsponse.toString()
+
+        }
+
         return root
+
+
     }
 }

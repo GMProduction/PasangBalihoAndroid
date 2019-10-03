@@ -2,4 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="toolBarHeight">70dp</dimen>
+    <dimen name="marginstart_tittle_fragment">16dp</dimen>
+    <dimen name="text_size_title_fragment">16sp</dimen>
+    <dimen name="marginstart_items">16dp</dimen>
 </resources>

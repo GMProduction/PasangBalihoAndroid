@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/navigation_account_main"
-        android:name="com.genossys.pasangbaliho.ui.sign_in.SignInFragment"
+        android:name="com.genossys.pasangbaliho.ui.account.AccountFragment"
         android:label="fragment_fragment_account_main"
         tools:layout="@layout/fragment_fragment_account_main" >
 

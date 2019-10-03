@@ -1,16 +1,12 @@
 package com.genossys.pasangbaliho
 
 import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.transition.Explode
-import android.transition.Fade
-import android.view.Window
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.genossys.pasangbaliho.ui.sign_in.SignInActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 
@@ -32,12 +28,20 @@ class SplashScreen : AppCompatActivity() {
             img_splash_screen.startAnimation(animFadeOut)
         }, waktuFadeOut.toLong())
 
+        val account = GoogleSignIn.getLastSignedInAccount(this)
 
         Handler().postDelayed({
             //setelah loading maka akan langsung berpindah ke home activity
-            val home = Intent(this, MainActivity::class.java)
-            startActivity(home)
-            finish()
+            if (account != null) {
+                val home = Intent(this, MainActivity::class.java)
+                startActivity(home)
+                finish()
+            } else {
+                val home = Intent(this, SignInActivity::class.java)
+                startActivity(home)
+                finish()
+            }
+
         }, waktuLoading.toLong())
     }
 

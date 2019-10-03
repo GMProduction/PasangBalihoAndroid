@@ -13,4 +13,5 @@
     <string name="or">OR</string>
     <string name="sign_in_google_label">sign in with google</string>
     <string name="image_aplikasi">image_aplikasi</string>
+    <string name="account_tittle_fragment">Account</string>
 </resources>
