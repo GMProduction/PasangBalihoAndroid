@@ -30,7 +30,7 @@ abstract class PasangBalihoDb : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 PasangBalihoDb::class.java,
-                "pasangBalihoDb"
+                "pasangBaliho.db"
             ).build()
     }
 }

@@ -29,5 +29,5 @@ data class Advertiser(
     val updatedAt: String
 ) {
     @PrimaryKey(autoGenerate = false)
-    val id: Int = ADVERTISER_ID
+    var id: Int = ADVERTISER_ID
 }

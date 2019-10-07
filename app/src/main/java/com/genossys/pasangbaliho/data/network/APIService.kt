@@ -1,4 +1,4 @@
-package com.genossys.pasangbaliho.data
+package com.genossys.pasangbaliho.data.network
 
 
 import com.genossys.pasangbaliho.data.network.response.ResponseAdvertiser
@@ -22,7 +22,10 @@ interface APIService {
     ): Deferred<ResponseAdvertiser>
 
     companion object {
-        operator fun invoke(): APIService {
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ): APIService {
+
             val requestInterceptor = Interceptor { chain ->
                 val url = chain.request()
                     .newBuilder()
@@ -33,6 +36,7 @@ interface APIService {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                .addInterceptor(connectivityInterceptor)
                 .build()
 
             return Retrofit.Builder()
