@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shimmer_detail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pagershimmer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/backdrop"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/indicatorshimmer"
+        style="@style/CustomCirclePageIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2dp"
+        android:padding="10dip"
+        app:centered="true"
+        app:layout_constraintBottom_toBottomOf="@id/pagershimmer"
+        app:snap="false" />
+
+    <TextView
+        android:id="@+id/text_hargashimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_menu_utama"
+        android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+        android:layout_marginEnd="@dimen/margin_default_menu_utama"
+        android:background="@color/backdrop"
+        android:fontFamily="@font/poppinsbold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/pagershimmer"
+        app:layout_constraintTop_toBottomOf="@+id/pagershimmer" />
+
+
+    <TextView
+        android:id="@+id/text_alamatshimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_menu_utama"
+        android:background="@color/backdrop"
+        android:fontFamily="@font/poppinsregular"
+        android:maxLines="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_hargashimmer" />
+
+    <TextView
+        android:id="@+id/text_kotashimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_menu_utama"
+        android:background="@color/backdrop"
+        android:fontFamily="@font/poppinsregular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_alamatshimmer" />
+
+    <TextView
+        android:id="@+id/text_provinsishimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_menu_utama"
+        android:background="@color/backdrop"
+        android:fontFamily="@font/poppinsregular"
+        app:layout_constraintTop_toBottomOf="@+id/text_kotashimmer" />
+
+
+    <TextView
+        android:id="@+id/button_ordershimmer"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:background="@color/backdrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/margin_default_menu_utama"
+        android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+        app:layout_constraintTop_toBottomOf="@+id/text_provinsishimmer" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:layout_constraintTop_toBottomOf="@id/button_ordershimmer" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,24 +1,41 @@
 package com.genossys.pasangbaliho.ui.account
 
-import android.app.Application
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.genossys.pasangbaliho.data.db.repository.AdvertiserRepository
+import com.genossys.pasangbaliho.ui.sign_in.AuthListener
+import com.genossys.pasangbaliho.utils.ApiException
+import com.genossys.pasangbaliho.utils.Coroutines
+import com.genossys.pasangbaliho.utils.NoInternetException
 
-class AccountViewModel : ViewModel() {
+class AccountViewModel(
+    val repository: AdvertiserRepository
+) : ViewModel() {
 
-    lateinit var fullname:String;
-    lateinit var email:String;
-    lateinit var urlFoto:String;
-    private lateinit var context: Context
+    var authListener: AuthListener? = null
+    val user = repository.getAdvertiser()
+
+    fun getLoggedInAdvertiser() = repository.getAdvertiser()
+
+    fun deleteAdvertiser() {
 
 
+        Coroutines.main {
 
+            try {
+                repository.deleteAdvertiser()
+                Log.d("on sign out", "coba sign out")
+                authListener?.onFailure("Anda berhasil keluar")
+                return@main
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+            } catch (e: ApiException) {
+                authListener?.onFailure(e.message!!)
+            } catch (e: NoInternetException) {
+                authListener?.onFailure(e.message!!)
+            }
+
+        }
+
     }
-    val text: LiveData<String> = _text
+
 }

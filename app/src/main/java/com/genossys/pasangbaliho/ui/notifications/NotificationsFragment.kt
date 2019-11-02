@@ -13,20 +13,18 @@ import com.genossys.pasangbaliho.ui.account.AccountViewModel
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var accountViewModel: AccountViewModel
+    private lateinit var notificationsViewModel: NotificationsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        accountViewModel =
-            ViewModelProviders.of(this).get(AccountViewModel::class.java)
+        notificationsViewModel =
+            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_notifications, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
-        accountViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+
         return root
     }
 }

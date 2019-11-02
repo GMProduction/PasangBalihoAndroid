@@ -31,10 +31,6 @@
             app:destination="@id/navigation_account"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_sign_in"
-        android:name="com.genossys.pasangbaliho.ui.sign_in.SignInFragment"
-        tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_account"

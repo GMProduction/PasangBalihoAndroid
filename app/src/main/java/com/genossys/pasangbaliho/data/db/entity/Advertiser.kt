@@ -5,29 +5,30 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-const val ADVERTISER_ID = 0
+const val ADVERTISER_NUMBER = 0
 
-@Entity(tableName = "tb_advertiser")
+@Entity(tableName = "advertiser")
 data class Advertiser(
 
 
+    @PrimaryKey(autoGenerate = false)
+    var num: Int = ADVERTISER_NUMBER,
+
+    var id: Int?,
     val email: String,
     val nama: String,
-    val telp: String,
-    val alamat: String,
+    val telp: String?,
+    val alamat: String?,
 
     @SerializedName("api_token")
-    val apiToken: String,
+    val apiToken: String?,
 
     @SerializedName("email_verified_at")
-    val emailVerifiedAt: String,
+    val emailVerifiedAt: String?,
 
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: String?,
 
     @SerializedName("updated_at")
-    val updatedAt: String
-) {
-    @PrimaryKey(autoGenerate = false)
-    var id: Int = ADVERTISER_ID
-}
+    val updatedAt: String?
+)

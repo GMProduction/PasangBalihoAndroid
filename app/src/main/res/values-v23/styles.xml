@@ -10,6 +10,15 @@
         <item name="android:statusBarColor">#fff</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#fff</item>
+    </style>
+
     <style name="splasScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- enable window content transitions -->
         <item name="android:statusBarColor">#fff</item>

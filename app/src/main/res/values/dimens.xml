@@ -6,4 +6,22 @@
     <dimen name="marginstart_tittle_fragment">16dp</dimen>
     <dimen name="text_size_title_fragment">16sp</dimen>
     <dimen name="marginstart_items">16dp</dimen>
+    <dimen name="marginstartLayout">16dp</dimen>
+    <dimen name="martopdefault">16dp</dimen>
+    <dimen name="tinggi_gambar_temp_utama">200dp</dimen>
+    <dimen name="margin_gambar_temp_utama">16dp</dimen>
+    <dimen name="margin_text_temp_utama">4dp</dimen>
+    <dimen name="margin_view_temp_utama">16dp</dimen>
+    <dimen name="margin_default_menu_utama">8dp</dimen>
+    <dimen name="box_radius">15dp</dimen>
+    <dimen name="width_kategori_button">80dp</dimen>
+    <dimen name="height_kategori_button">80dp</dimen>
+    <dimen name="image_button_kategori">50dp</dimen>
+    <dimen name="heigh_navbar_bottom">60dp</dimen>
+    <dimen name="text_judul">14sp</dimen>
+    <dimen name="margin_default_menu_utama_besar">16dp</dimen>
+    <dimen name="margin_default_menu_utama_kecil">4dp</dimen>
+    <dimen name="spinner_text_size">10sp</dimen>
+    <dimen name="text_size_menu_utama">10sp</dimen>
+    <dimen name="margin_menu_kategori">4dp</dimen>
 </resources>

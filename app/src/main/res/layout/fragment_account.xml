@@ -1,76 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backdrop">
 
-    <RelativeLayout
-        android:id="@+id/layout_tittle_fragment"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/toolBarHeight"
-        android:background="@color/frontdrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <TextView
-            android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="accountViewModel"
+            type="com.genossys.pasangbaliho.ui.account.AccountViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/marginstart_tittle_fragment"
-            android:text="@string/account_tittle_fragment"
-            android:textStyle="bold"
-            android:textColor="@color/textColorDark"
-            android:textSize="@dimen/text_size_title_fragment" />
-    </RelativeLayout>
+            android:background="@color/backdrop">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_login_accuont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/frontdrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_tittle_fragment">
+            <RelativeLayout
+                android:id="@+id/layout_tittle_fragment"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/toolBarHeight"
+                android:background="@color/frontdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/marginstart_tittle_fragment"
+                    android:text="@string/account_tittle_fragment"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/text_size_title_fragment"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_show_mini_accuont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/frontdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_tittle_fragment">
 
 
-        <ImageView
-            android:id="@+id/imageView_avatar"
-            android:layout_height="100dp"
-            android:layout_width="100dp"
-            android:layout_margin="16dp"
-            android:layout_marginStart="@dimen/marginstart_items"
-            android:layout_marginTop="@dimen/marginstart_items"
-            android:layout_marginBottom="@dimen/marginstart_items"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/imageView_avatar"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_margin="@dimen/marginstartLayout"
+                    android:layout_marginStart="@dimen/marginstart_items"
+                    android:layout_marginTop="@dimen/marginstart_items"
+                    android:layout_marginBottom="@dimen/marginstart_items"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_account_box"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/textview_fullname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginstart_items"
-            android:text="Pradana Mahendra"
-            android:textStyle="bold"
-            android:textColor="@color/textColorDark"
-            app:layout_constraintStart_toEndOf="@id/imageView_avatar"
-            app:layout_constraintTop_toTopOf="@id/imageView_avatar" />
+                <TextView
+                    android:id="@+id/textview_fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginstart_items"
+                    android:text="@{accountViewModel.user.nama}"
+                    android:textColor="@color/textColorDark"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imageView_avatar"
+                    app:layout_constraintTop_toTopOf="@id/imageView_avatar" />
 
-        <TextView
-            android:id="@+id/textview_email"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginstart_items"
-            android:text="Pradana Mahendra"
-            android:textColor="@color/textColorDark"
-            app:layout_constraintStart_toEndOf="@id/imageView_avatar"
-            app:layout_constraintTop_toBottomOf="@id/textview_fullname" />
+                <TextView
+                    android:id="@+id/textview_email"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginstart_items"
+                    android:text="@{accountViewModel.user.email}"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintStart_toEndOf="@id/imageView_avatar"
+                    app:layout_constraintTop_toBottomOf="@id/textview_fullname" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/frontdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_show_mini_accuont">
+
+                <ImageView
+                    android:id="@+id/icon_history"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginTop="@dimen/martopdefault"
+                    android:layout_marginBottom="@dimen/martopdefault"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginEnd="@dimen/marginstartLayout"
+                    android:text="History Transaksi"
+                    app:layout_constraintBottom_toBottomOf="@+id/icon_history"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon_history"
+                    app:layout_constraintTop_toTopOf="@id/icon_history" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/text_history"
+                    app:layout_constraintStart_toStartOf="@+id/text_history" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_bantuan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/frontdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_history">
+
+                <ImageView
+                    android:id="@+id/icon_bantuan"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginTop="@dimen/martopdefault"
+                    android:layout_marginBottom="@dimen/martopdefault"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_bantuan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginEnd="@dimen/marginstartLayout"
+                    android:text="Bantuan"
+                    app:layout_constraintBottom_toBottomOf="@+id/icon_bantuan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon_bantuan"
+                    app:layout_constraintTop_toTopOf="@id/icon_bantuan" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/text_bantuan"
+                    app:layout_constraintStart_toStartOf="@+id/text_bantuan" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_privacy_policy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/frontdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_bantuan">
+
+                <ImageView
+                    android:id="@+id/icon_privacy_policy"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginTop="@dimen/martopdefault"
+                    android:layout_marginBottom="@dimen/martopdefault"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_privacy_policy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginEnd="@dimen/marginstartLayout"
+                    android:text="Privacy Policy"
+                    app:layout_constraintBottom_toBottomOf="@+id/icon_privacy_policy"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon_privacy_policy"
+                    app:layout_constraintTop_toTopOf="@id/icon_privacy_policy" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/text_privacy_policy"
+                    app:layout_constraintStart_toStartOf="@+id/text_privacy_policy" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_sign_out"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/frontdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_beri_nilai">
+
+                <ImageView
+                    android:id="@+id/icon_sign_out"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginTop="@dimen/martopdefault"
+                    android:layout_marginBottom="@dimen/martopdefault"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_sign_out"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginEnd="@dimen/marginstartLayout"
+                    android:text="Sign Out"
+                    android:textColor="@color/color_danger"
+                    app:layout_constraintBottom_toBottomOf="@+id/icon_sign_out"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon_sign_out"
+                    app:layout_constraintTop_toTopOf="@id/icon_sign_out" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/text_sign_out"
+                    app:layout_constraintStart_toStartOf="@+id/text_sign_out" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_beri_nilai"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/frontdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_privacy_policy">
+
+                <ImageView
+                    android:id="@+id/icon_beri_nilai"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginTop="@dimen/martopdefault"
+                    android:layout_marginBottom="@dimen/martopdefault"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_beri_nilai"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginstartLayout"
+                    android:layout_marginEnd="@dimen/marginstartLayout"
+                    android:text="Beri Nilai / Rate"
+                    app:layout_constraintBottom_toBottomOf="@+id/icon_beri_nilai"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon_beri_nilai"
+                    app:layout_constraintTop_toTopOf="@id/icon_beri_nilai" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/text_beri_nilai"
+                    app:layout_constraintStart_toStartOf="@+id/text_beri_nilai" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_login_accuont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/frontdrop"
+                app:layout_constraintBottom_toBottomOf="@id/layout_history"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/layout_show_mini_accuont">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Anda belum login"
+                    app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
+                    app:layout_constraintEnd_toEndOf="@id/button_sign_in"
+                    app:layout_constraintStart_toStartOf="@+id/button_sign_in" />
+
+                <Button
+                    android:id="@+id/button_sign_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masuk / Daftar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
