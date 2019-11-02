@@ -10,6 +10,7 @@ import com.genossys.pasangbaliho.utils.NoInternetException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import java.net.SocketTimeoutException
 
 class HomeViewModel(
     private val repository: BalihoRepository
@@ -34,13 +35,15 @@ class HomeViewModel(
                     baliho.postValue(it)
                     withContext(Dispatchers.Main) {
                         homeListener?.onRekomendasiLoaded()
-                        job.isCompleted
                     }
                 }
             } catch (e: ApiException) {
                 homeListener?.onFailure(e.message!!)
             } catch (e: NoInternetException) {
                 homeListener?.onFailure(e.message!!)
+            }catch (e: SocketTimeoutException){
+                homeListener?.onTimeOut("soket timeout, ulang job lagi")
+                job.cancel()
             }
 
         }

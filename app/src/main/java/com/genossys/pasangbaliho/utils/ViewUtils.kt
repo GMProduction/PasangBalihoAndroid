@@ -1,26 +1,48 @@
 package com.genossys.pasangbaliho.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
-fun Context.toast(message: String){
+fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
-fun ProgressBar.show(){
+fun ProgressBar.show() {
     visibility = View.VISIBLE
 }
 
-fun ProgressBar.hide(){
-    visibility = View. INVISIBLE
+fun ProgressBar.hide() {
+    visibility = View.INVISIBLE
 }
 
-fun View.snackbar(message: String){
-    Snackbar.make(this, message, Snackbar.LENGTH_LONG).also {snackbar ->
-        snackbar.setAction("OK"){
+fun View.snackbar(message: String) {
+    Snackbar.make(this, message, Snackbar.LENGTH_LONG).also { snackbar ->
+        snackbar.setAction("OK") {
+            snackbar.dismiss()
+        }
+    }.show()
+}
+
+fun View.snackbarError(message: String) {
+    Snackbar.make(this, message, Snackbar.LENGTH_LONG).also { snackbar ->
+        snackbar.view.setBackgroundColor(Color.parseColor("#E94340"))
+        snackbar.setActionTextColor(Color.parseColor("#FFFFFF"))
+        snackbar.setAction("OK") {
+            snackbar.dismiss()
+        }
+    }.show()
+}
+
+
+fun View.snackbarSuccess(message: String) {
+    Snackbar.make(this, message, Snackbar.LENGTH_LONG).also { snackbar ->
+        snackbar.view.setBackgroundColor(Color.parseColor("#55AE59"))
+        snackbar.setActionTextColor(Color.parseColor("#FFFFFF"))
+        snackbar.setAction("OK") {
             snackbar.dismiss()
         }
     }.show()

@@ -20,4 +20,7 @@ interface AdvertiserDao {
     @Query("select * from advertiser where num = $ADVERTISER_NUMBER")
     fun checkAdvertiser(): LiveData<Advertiser>
 
+    @Query("select * from advertiser where num = $ADVERTISER_NUMBER")
+    suspend fun checkAdvertiser2(): Advertiser
+
 }

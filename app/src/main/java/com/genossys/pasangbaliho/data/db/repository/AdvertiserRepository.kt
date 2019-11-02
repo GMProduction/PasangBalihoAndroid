@@ -2,9 +2,9 @@ package com.genossys.pasangbaliho.data.db.repository
 
 import com.genossys.pasangbaliho.data.db.PasangBalihoDb
 import com.genossys.pasangbaliho.data.db.entity.Advertiser
+import com.genossys.pasangbaliho.data.db.response.AdvertiserResponse
 import com.genossys.pasangbaliho.data.network.Api.ApiService
 import com.genossys.pasangbaliho.data.network.Api.SafeApiRequest
-import com.genossys.pasangbaliho.data.db.response.AdvertiserResponse
 
 class AdvertiserRepository(
 
@@ -30,6 +30,8 @@ class AdvertiserRepository(
     suspend fun deleteAdvertiser() = db.advertiserDao().delete()
 
     fun getAdvertiser() = db.advertiserDao().checkAdvertiser()
+
+    suspend fun getAdvertiser2() = db.advertiserDao().checkAdvertiser2()
 }
 
 

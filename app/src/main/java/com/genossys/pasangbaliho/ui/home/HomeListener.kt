@@ -7,4 +7,5 @@ interface HomeListener {
     fun onRekomendasiLoaded()
     fun onSuccess()
     fun onFailure(message: String)
+    fun onTimeOut(s: String)
 }

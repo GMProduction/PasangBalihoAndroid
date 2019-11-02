@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_ajukan_penawaran"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root_ajukan_penawaran"
     tools:context=".ui.transaksi.AjukanPenawaranActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +44,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_detail"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="260dp"
         android:layout_margin="@dimen/margin_default_menu_utama_besar"
         android:background="@color/frontdrop"
         app:cardCornerRadius="10dp"
@@ -84,7 +84,7 @@
         android:id="@+id/text_tittle_ajukan_penawaran"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/poppinsblack"
         android:text="Kapan rencana iklanmu mau di pasang?"
         android:textColor="@color/textColorDark"
@@ -148,12 +148,28 @@
         android:id="@+id/button_order"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_default_menu_utama"
-        android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+        android:layout_marginTop="@dimen/margin_default_menu_utama"
         android:text="Ajukan Penawaran Sekarang"
         app:cornerRadius="@dimen/box_radius"
         app:layout_constraintEnd_toEndOf="@id/tanggal_ahkir_layout"
         app:layout_constraintStart_toStartOf="@id/tanggal_ahkir_layout"
         app:layout_constraintTop_toBottomOf="@+id/tanggal_ahkir_layout" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loading_screen"
+        android:background="@color/loadingBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="BallPulseIndicator"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

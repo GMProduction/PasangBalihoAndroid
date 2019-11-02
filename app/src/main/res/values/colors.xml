@@ -9,4 +9,5 @@
     <color name="black20">#cccccc</color>
     <color name="color_danger">#dd1111</color>
     <color name="judul_text">#000</color>
+    <color name="loadingBackground">#dd000000</color>
 </resources>

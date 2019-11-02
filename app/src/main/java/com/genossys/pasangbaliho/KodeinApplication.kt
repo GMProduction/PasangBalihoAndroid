@@ -36,7 +36,7 @@ class KodeinApplication : Application(), KodeinAware {
         bind() from singleton { KotaRepository(instance(), instance()) }
         bind() from singleton { KategoriRepository(instance(), instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
-        bind() from provider { AjukanPenawaranViewModelFactory(instance()) }
+        bind() from provider { AjukanPenawaranViewModelFactory(instance(), instance()) }
         bind() from provider { AccountViewModelFactory(instance()) }
         bind() from provider { DetailBalihoViewModelFactory(instance()) }
         bind() from provider { PencarianGlobalViewModelFactory(instance(), instance(), instance()) }

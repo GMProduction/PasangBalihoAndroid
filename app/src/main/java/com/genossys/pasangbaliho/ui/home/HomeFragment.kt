@@ -37,7 +37,6 @@ import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(), HomeListener, KodeinAware {
 
-
     override val kodein by kodein()
     lateinit var root: View
     private lateinit var balihoAdapter: AdapterRekomendasiBaliho
@@ -270,6 +269,25 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
     override fun onFailure(message: String) {
         root_layout.snackbar(message)
         Log.d("state", "gagal")
+    }
+
+    override fun onTimeOut(s: String) {
+        root_layout.snackbar(s)
+        Coroutines.main {
+            page = 1
+            val balihos = homeViewModel.getBaliho(page, true)
+            balihos.observe(this, Observer {
+                listBaliho.clear()
+                initRecycleView()
+                for (i in it.baliho) {
+                    listBaliho.add(i!!)
+                }
+                balihoAdapter.sumitList(listBaliho)
+                page = it.currentPage!!
+                totalPage = it.lastPage!!
+
+            })
+        }
     }
 
     override fun onRekomendasiLoaded() {
