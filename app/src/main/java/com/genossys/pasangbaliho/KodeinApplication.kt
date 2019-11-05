@@ -7,10 +7,7 @@ import com.genossys.pasangbaliho.data.network.Api.ApiService
 import com.genossys.pasangbaliho.data.network.NetworkConnectionInterceptor
 import com.genossys.pasangbaliho.data.preferences.PreferenceProvider
 import com.genossys.pasangbaliho.ui.account.AccountViewModelFactory
-import com.genossys.pasangbaliho.ui.home.AjukanPenawaranViewModelFactory
-import com.genossys.pasangbaliho.ui.home.DetailBalihoViewModelFactory
-import com.genossys.pasangbaliho.ui.home.HomeViewModelFactory
-import com.genossys.pasangbaliho.ui.home.PencarianGlobalViewModelFactory
+import com.genossys.pasangbaliho.ui.home.*
 import com.genossys.pasangbaliho.ui.sign_in.AuthViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -37,6 +34,7 @@ class KodeinApplication : Application(), KodeinAware {
         bind() from singleton { KategoriRepository(instance(), instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from provider { AjukanPenawaranViewModelFactory(instance(), instance()) }
+        bind() from provider { MenuTransaksiViewModelFactory(instance(), instance()) }
         bind() from provider { AccountViewModelFactory(instance()) }
         bind() from provider { DetailBalihoViewModelFactory(instance()) }
         bind() from provider { PencarianGlobalViewModelFactory(instance(), instance(), instance()) }

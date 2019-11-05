@@ -123,23 +123,6 @@
         <include layout="@layout/shimmer_list" />
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/shimmer_layout2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/frontdrop"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.wang.avi.AVLoadingIndicatorView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorColor="@color/colorPrimary"
-            app:indicatorName="BallPulseIndicator"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+<include layout="@layout/loading_bottom_layout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

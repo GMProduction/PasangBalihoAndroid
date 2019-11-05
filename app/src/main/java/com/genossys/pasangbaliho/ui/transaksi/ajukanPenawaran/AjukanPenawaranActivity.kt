@@ -15,7 +15,10 @@ import com.genossys.pasangbaliho.R
 import com.genossys.pasangbaliho.data.network.Api.URL_FOTO
 import com.genossys.pasangbaliho.ui.home.AjukanPenawaranViewModel
 import com.genossys.pasangbaliho.ui.home.AjukanPenawaranViewModelFactory
-import com.genossys.pasangbaliho.utils.*
+import com.genossys.pasangbaliho.utils.CommonListener
+import com.genossys.pasangbaliho.utils.Coroutines
+import com.genossys.pasangbaliho.utils.snackbarError
+import com.genossys.pasangbaliho.utils.snackbarSuccess
 import com.orhanobut.dialogplus.DialogPlus
 import com.orhanobut.dialogplus.ViewHolder
 import kotlinx.android.synthetic.main.activity_ajukan_penawaran.*
@@ -29,7 +32,6 @@ import kotlin.concurrent.timerTask
 
 
 class AjukanPenawaranActivity : AppCompatActivity(), KodeinAware, CommonListener {
-
 
     override val kodein by kodein()
     private val factory: AjukanPenawaranViewModelFactory by instance()
@@ -187,16 +189,12 @@ class AjukanPenawaranActivity : AppCompatActivity(), KodeinAware, CommonListener
         dialog?.dismiss()
 
         Coroutines.main {
-            val dataBaliho = viewModel!!.postAjukanTransaksi(
+            viewModel!!.postAjukanTransaksi(
                 idBaliho!!,
                 idAdvertiser!!,
                 sdf.format(dateAwal),
                 sdf.format(dateAkhir)
             )
-
-            dataBaliho.observe(this, androidx.lifecycle.Observer {
-                root_ajukan_penawaran.snackbar(it.message!!)
-            })
         }
     }
 
@@ -250,8 +248,19 @@ class AjukanPenawaranActivity : AppCompatActivity(), KodeinAware, CommonListener
 
     }
 
+    override fun onTimeOut(message: String) {
+        root_ajukan_penawaran.snackbarError("Permintaan gagal, periksa koneksi anda")
+        loading_screen.visibility = View.INVISIBLE
+        card_detail.visibility = View.VISIBLE
+        button_order.visibility = View.INVISIBLE
+    }
+
+
     override fun onFailure(message: String) {
         root_ajukan_penawaran.snackbarError(message)
+        loading_screen.visibility = View.INVISIBLE
+        card_detail.visibility = View.VISIBLE
+        button_order.visibility = View.INVISIBLE
     }
 
 }

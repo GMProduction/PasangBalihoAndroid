@@ -206,4 +206,5 @@
     </androidx.core.widget.NestedScrollView>
 
     <include layout="@layout/shimmer_detail_baliho" />
+    <include layout="@layout/loading_mid_layout"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

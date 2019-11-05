@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
@@ -18,6 +19,7 @@ import com.genossys.pasangbaliho.utils.ImageSlider
 import com.genossys.pasangbaliho.utils.snackbar
 import com.viewpagerindicator.CirclePageIndicator
 import kotlinx.android.synthetic.main.activity_detail_baliho.*
+import kotlinx.android.synthetic.main.loading_mid_layout.*
 import kotlinx.android.synthetic.main.shimmer_detail_baliho.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -28,7 +30,6 @@ import kotlin.collections.ArrayList
 
 class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
 
-
     override val kodein by kodein()
     private val factory: DetailBalihoViewModelFactory by instance()
     private var idBaliho = 1
@@ -37,24 +38,35 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
         "fotobaliho1.jpg"
     )
 
+    var swipeTimer = Timer()
     var lat: String? = ""
     var lng: String? = ""
     var streetView: String? = ""
     var alamat: String? = ""
 
+    var viewModel: DetailBalihoViewModel? = null
     val dec = DecimalFormat("#,###")
+    private lateinit var btnReload: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_baliho)
 
         idBaliho = intent.getIntExtra("id", 1)
+        btnReload = findViewById(R.id.reload)
 
-        val viewModel = ViewModelProviders.of(this, factory).get(DetailBalihoViewModel::class.java)
-        viewModel.detailListener = this
+        viewModel = ViewModelProviders.of(this, factory).get(DetailBalihoViewModel::class.java)
+        viewModel!!.detailListener = this
+
+        loadData()
+        initButton()
+
+    }
+
+    private fun loadData() {
         Coroutines.main {
 
-            val dataBaliho = viewModel.getDetailBaliho(idBaliho)
+            val dataBaliho = viewModel!!.getDetailBaliho(idBaliho)
 
             dataBaliho.observe(this, androidx.lifecycle.Observer {
                 myImageList.clear()
@@ -63,16 +75,19 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
                 }
                 imageModelArrayList = populateList()
                 init()
+                val harga =
+                    "Harga: " + dec.format(it.baliho?.minHarga).toString() + "-" + dec.format(it.baliho?.maxHarga).toString()
+                val kota = "Kota: " + it.baliho?.kota
+                val provinsi = "Provinsi: " + it.baliho?.provinsi
 
                 text_nama.text = it.baliho?.namaBaliho
                 text_alamat.text = it.baliho?.alamat
-                text_kota.text = "Kota: " + it.baliho?.kota
-                text_provinsi.text = "Provinsi: " + it.baliho?.provinsi
+                text_kota.text = kota
+                text_provinsi.text = provinsi
 
                 text_deskripsi.text = it.baliho?.deskripsi
 
-                text_harga.text =
-                    "Harga: " + dec.format(it.baliho?.minHarga).toString() + "-" + dec.format(it.baliho?.maxHarga).toString()
+                text_harga.text = harga
 
                 lat = it.baliho?.latitude
                 lng = it.baliho?.logitude
@@ -82,9 +97,6 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
 
             })
         }
-
-        initButton()
-
     }
 
     private fun populateList(): ArrayList<ImageSlider> {
@@ -124,7 +136,8 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
             }
             mPager!!.setCurrentItem(currentPage++, true)
         }
-        val swipeTimer = Timer()
+
+        swipeTimer = Timer()
         swipeTimer.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
@@ -158,7 +171,7 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
     }
 
 
-    private fun initButton(){
+    private fun initButton() {
         button_map.setOnClickListener {
             val i = Intent(this@DetailBalihoActivity, DetailMapsActivity::class.java)
             i.putExtra("lat", lat)
@@ -180,6 +193,10 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
             finish()
         }
 
+        btnReload.setOnClickListener {
+            loadData()
+        }
+
         button_ajukan_penawaran.setOnClickListener {
             val i = Intent(this@DetailBalihoActivity, AjukanPenawaranActivity::class.java)
             i.putExtra("gambar", myImageList[0])
@@ -188,11 +205,13 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
             startActivity(i)
         }
     }
+
     override fun onStarted() {
         Coroutines.main {
             root_layout.visibility = View.INVISIBLE
             shimmer_detail.visibility = View.VISIBLE
             shimmer_detail.startShimmer()
+            card_loading.visibility = View.GONE
         }
     }
 
@@ -205,6 +224,7 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
             shimmer_detail.visibility = View.GONE
             shimmer_detail.stopShimmer()
             root_layout.visibility = View.VISIBLE
+            card_loading.visibility = View.GONE
         }
     }
 
@@ -212,7 +232,29 @@ class DetailBalihoActivity : AppCompatActivity(), DetailListener, KodeinAware {
 
     }
 
+    override fun onTimeOut(message: String) {
+        Coroutines.main {
+            shimmer_detail.visibility = View.GONE
+            shimmer_detail.stopShimmer()
+            root_layout.visibility = View.VISIBLE
+            card_loading.visibility = View.VISIBLE
+            progress_loading_mid.visibility = View.GONE
+        }
+    }
+
     override fun onFailure(message: String) {
         root_layout.snackbar(message)
+        Coroutines.main {
+            shimmer_detail.visibility = View.GONE
+            shimmer_detail.stopShimmer()
+            root_layout.visibility = View.VISIBLE
+            card_loading.visibility = View.VISIBLE
+            progress_loading_mid.visibility = View.GONE
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        swipeTimer.cancel()
     }
 }

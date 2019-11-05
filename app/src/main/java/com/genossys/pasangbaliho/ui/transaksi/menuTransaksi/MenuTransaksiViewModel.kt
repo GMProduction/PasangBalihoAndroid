@@ -13,8 +13,9 @@ import com.genossys.pasangbaliho.utils.NoInternetException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import java.net.SocketTimeoutException
 
-class AjukanPenawaranViewModel(
+class MenuTransaksiViewModel(
     private val repository: TransaksiRepository,
     private val advertiserRepository: AdvertiserRepository
 ) : ViewModel() {
@@ -64,6 +65,9 @@ class AjukanPenawaranViewModel(
                 listener?.onFailure(e.message!!)
             } catch (e: NoInternetException) {
                 listener?.onFailure(e.message!!)
+            }catch (e: SocketTimeoutException){
+                listener?.onTimeOut("soket timeout, ulang job lagi")
+                job.cancel()
             }
 
         }

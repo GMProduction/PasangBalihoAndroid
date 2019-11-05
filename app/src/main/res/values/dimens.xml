@@ -24,4 +24,5 @@
     <dimen name="spinner_text_size">10sp</dimen>
     <dimen name="text_size_menu_utama">10sp</dimen>
     <dimen name="margin_menu_kategori">4dp</dimen>
+    <dimen name="textsize_item_transaksi">12sp</dimen>
 </resources>

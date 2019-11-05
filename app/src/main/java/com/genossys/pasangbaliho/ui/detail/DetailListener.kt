@@ -7,4 +7,5 @@ interface DetailListener {
     fun onDetailLoaded()
     fun onSuccess()
     fun onFailure(message: String)
+    fun onTimeOut(message: String)
 }

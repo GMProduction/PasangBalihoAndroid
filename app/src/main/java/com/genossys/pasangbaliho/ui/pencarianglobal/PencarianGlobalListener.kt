@@ -6,5 +6,6 @@ interface PencarianGlobalListener {
     fun onLoadMore()
     fun onSuccess()
     fun onEmpty()
+    fun onTimeOut(message: String)
     fun onFailure(message: String)
 }

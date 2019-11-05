@@ -9,14 +9,16 @@ import com.genossys.pasangbaliho.utils.ApiException
 import com.genossys.pasangbaliho.utils.Coroutines
 import com.genossys.pasangbaliho.utils.NoInternetException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import java.net.SocketTimeoutException
 
 class DetailBalihoViewModel(
     private val repository: BalihoRepository
 ) : ViewModel() {
 
     var detailListener: DetailListener? = null
-
+    lateinit var job: Job
 //    private var id = 1
 
 //    fun setId(idnya: Int) {
@@ -29,9 +31,10 @@ class DetailBalihoViewModel(
 
 
     fun getDetailBaliho(id: Int): MutableLiveData<DetailBalihoResponse> {
+        job = Job()
         var detail = MutableLiveData<DetailBalihoResponse>()
         detailListener?.onStarted()
-        Coroutines.io {
+        job = Coroutines.io {
             try {
                 detail.postValue(repository.getDetail(id))
                 withContext(Dispatchers.Main){
@@ -42,6 +45,9 @@ class DetailBalihoViewModel(
                 detailListener?.onFailure(e.message!!)
             } catch (e: NoInternetException) {
                 detailListener?.onFailure(e.message!!)
+            } catch (e: SocketTimeoutException){
+                detailListener?.onTimeOut("soket timeout, ulang job lagi")
+                job.cancel()
             }
 
         }

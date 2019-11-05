@@ -52,4 +52,9 @@
         <item name="strokeColor">@color/colorPrimary</item>
     </style>
 
+    <style name="GenosTabStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/poppinsbold</item>
+    </style>
+
 </resources>

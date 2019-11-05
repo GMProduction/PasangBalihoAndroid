@@ -12,7 +12,9 @@ import com.genossys.pasangbaliho.utils.ApiException
 import com.genossys.pasangbaliho.utils.Coroutines
 import com.genossys.pasangbaliho.utils.NoInternetException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import java.net.SocketTimeoutException
 
 class PencarianGlobalViewModel(
     private val repository: BalihoRepository,
@@ -21,7 +23,7 @@ class PencarianGlobalViewModel(
 ) : ViewModel() {
 
     var pencarianListener: PencarianGlobalListener? = null
-
+    lateinit var job: Job
 
     suspend fun getBaliho(
         kota: String,
@@ -31,6 +33,7 @@ class PencarianGlobalViewModel(
         page: Int,
         awal: Boolean
     ): MutableLiveData<PageBaliho> {
+        job = Job()
         val baliho = MutableLiveData<PageBaliho>()
         if (awal) {
             pencarianListener?.onStarted()
@@ -38,7 +41,7 @@ class PencarianGlobalViewModel(
             pencarianListener?.onLoadMore()
         }
 
-        Coroutines.io {
+        job = Coroutines.io {
             try {
                 val balihosResponse =
                     repository.getDaListBalihoSearchGlobal(kota, kategori, sortby, tambahan, page)
@@ -58,6 +61,9 @@ class PencarianGlobalViewModel(
                 pencarianListener?.onFailure(e.message!!)
             } catch (e: NoInternetException) {
                 pencarianListener?.onFailure(e.message!!)
+            }catch (e: SocketTimeoutException){
+                pencarianListener?.onTimeOut("soket timeout, ulang job lagi")
+                job.cancel()
             }
 
         }
@@ -80,6 +86,8 @@ class PencarianGlobalViewModel(
 //                pencarianListener?.onFailure(e.message!!)
             } catch (e: NoInternetException) {
 //                pencarianListener?.onFailure(e.message!!)
+            }catch (e: SocketTimeoutException){
+
             }
 
         }
@@ -102,6 +110,8 @@ class PencarianGlobalViewModel(
 //                pencarianListener?.onFailure(e.message!!)
             } catch (e: NoInternetException) {
 //                pencarianListener?.onFailure(e.message!!)
+            }catch (e: SocketTimeoutException){
+
             }
 
         }

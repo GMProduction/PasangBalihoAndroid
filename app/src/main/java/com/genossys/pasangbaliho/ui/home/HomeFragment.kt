@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -28,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.kategori_layout.view.*
 import kotlinx.android.synthetic.main.kota_layout.view.*
+import kotlinx.android.synthetic.main.loading_mid_layout.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -50,15 +52,19 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
         "fotobaliho5.jpg"
     )
 
+    var swiperTimer = Timer()
     private var page: Int = 1
     private var totalPage: Int = 0
     private var readyToLoad = true
+    private var btnReloadReady = false
+    private var isLoadAwalOk = false
 
     private val factory: HomeViewModelFactory by instance()
     var listBaliho: MutableList<Baliho> = mutableListOf()
     private lateinit var shimerRekomendasiBaliho: ShimmerFrameLayout
     private lateinit var recyclerViewRekomendasi: RecyclerView
     private lateinit var scroller: NestedScrollView
+    private lateinit var btnReload: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,19 +79,23 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
         shimerRekomendasiBaliho = root.findViewById(R.id.shimmer_rekomendasi)
         recyclerViewRekomendasi = root.findViewById(R.id.recycle_view_rekomendasi)
         scroller = root.findViewById(R.id.nested_home)
+        btnReload = root.findViewById(R.id.reload)
 
         Coroutines.main {
             val balihos = homeViewModel.getBaliho(page, true)
             balihos.observe(this, Observer {
                 listBaliho.clear()
                 initRecycleView()
+
                 for (i in it.baliho) {
                     listBaliho.add(i!!)
                 }
+
                 balihoAdapter.sumitList(listBaliho)
                 page = it.currentPage!!
                 totalPage = it.lastPage!!
 
+                isLoadAwalOk = true
             })
         }
 
@@ -168,6 +178,44 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
         root.kota_sragen.setOnClickListener {
             setButton("Sragen", "")
         }
+
+        btnReload.setOnClickListener {
+            if (btnReloadReady) {
+                if (isLoadAwalOk) {
+                    Coroutines.main {
+                        val balihos = homeViewModel.getBaliho(page + 1, false)
+                        balihos.observe(this, Observer {
+                            listBaliho.clear()
+                            initRecycleView()
+                            for (i in it.baliho) {
+                                listBaliho.add(i!!)
+                            }
+                            balihoAdapter.sumitList(listBaliho)
+                            page = it.currentPage!!
+                            totalPage = it.lastPage!!
+
+                        })
+                    }
+                } else {
+                    Coroutines.main {
+                        page = 1
+                        val balihos = homeViewModel.getBaliho(page, false)
+                        balihos.observe(this, Observer {
+                            listBaliho.clear()
+                            initRecycleView()
+                            for (i in it.baliho) {
+                                listBaliho.add(i!!)
+                            }
+                            balihoAdapter.sumitList(listBaliho)
+                            page = it.currentPage!!
+                            totalPage = it.lastPage!!
+
+                        })
+                    }
+                }
+
+            }
+        }
     }
 
     private fun initRecycleView() {
@@ -211,12 +259,13 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
             }
             mPager!!.setCurrentItem(currentPage++, true)
         }
-        val swipeTimer = Timer()
-        swipeTimer.schedule(object : TimerTask() {
+
+        swiperTimer = Timer()
+        swiperTimer.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
             }
-        }, 4000, 4000)
+        }, 6000, 6000)
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -256,8 +305,11 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
     }
 
     override fun onLoadMore() {
+        btnReloadReady = false
         Coroutines.main {
             card_loading.visibility = View.VISIBLE
+            progress_loading_mid.visibility = View.VISIBLE
+            reload.visibility = View.GONE
         }
     }
 
@@ -268,25 +320,26 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
 
     override fun onFailure(message: String) {
         root_layout.snackbar(message)
-        Log.d("state", "gagal")
+        btnReloadReady = true
+        Coroutines.main {
+            shimerRekomendasiBaliho.stopShimmer()
+            shimerRekomendasiBaliho.visibility = View.GONE
+            card_loading.visibility = View.VISIBLE
+            progress_loading_mid.visibility = View.GONE
+            reload.visibility = View.VISIBLE
+            btnReloadReady = true
+        }
     }
 
     override fun onTimeOut(s: String) {
-        root_layout.snackbar(s)
+        btnReloadReady = true
         Coroutines.main {
-            page = 1
-            val balihos = homeViewModel.getBaliho(page, true)
-            balihos.observe(this, Observer {
-                listBaliho.clear()
-                initRecycleView()
-                for (i in it.baliho) {
-                    listBaliho.add(i!!)
-                }
-                balihoAdapter.sumitList(listBaliho)
-                page = it.currentPage!!
-                totalPage = it.lastPage!!
+            shimerRekomendasiBaliho.stopShimmer()
+            shimerRekomendasiBaliho.visibility = View.GONE
+            card_loading.visibility = View.VISIBLE
+            progress_loading_mid.visibility = View.GONE
+            reload.visibility = View.VISIBLE
 
-            })
         }
     }
 
@@ -295,6 +348,8 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
             shimerRekomendasiBaliho.stopShimmer()
             shimerRekomendasiBaliho.visibility = View.GONE
             card_loading.visibility = View.GONE
+            progress_loading_mid.visibility = View.VISIBLE
+            reload.visibility = View.GONE
             recycle_view_rekomendasi.visibility = View.VISIBLE
             readyToLoad = true
 
@@ -311,6 +366,7 @@ class HomeFragment : Fragment(), HomeListener, KodeinAware {
     override fun onPause() {
         super.onPause()
         homeViewModel.job.cancel()
+        swiperTimer.cancel()
     }
 
     private fun recycleViewOnBottom(pages: Int) {

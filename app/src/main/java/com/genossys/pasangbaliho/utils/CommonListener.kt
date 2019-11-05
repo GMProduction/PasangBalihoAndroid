@@ -6,5 +6,6 @@ interface CommonListener {
     fun onSuccess()
     fun onStartJob()
     fun onSuccessJob()
+    fun onTimeOut(message: String)
     fun onFailure(message: String)
 }

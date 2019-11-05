@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -18,6 +19,7 @@ import com.genossys.pasangbaliho.ui.home.PencarianGlobalViewModelFactory
 import com.genossys.pasangbaliho.utils.Coroutines
 import com.genossys.pasangbaliho.utils.snackbar
 import kotlinx.android.synthetic.main.activity_pencarian_global.*
+import kotlinx.android.synthetic.main.loading_bottom_layout.*
 import kotlinx.android.synthetic.main.shimmer_list.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -27,7 +29,6 @@ import kotlin.concurrent.timerTask
 
 
 class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatActivity() {
-
 
     override val kodein by kodein()
     private val factory: PencarianGlobalViewModelFactory by instance()
@@ -44,6 +45,8 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
     private var page: Int = 1
     private var totalPage: Int = 0
     private var readyToLoad = true
+    private var btnReloadReady = false
+    private var isLoadAwalOk = false
 
     val listKota = mutableListOf("Semua Kota")
     val listKategori = mutableListOf("Semua Kategori")
@@ -51,17 +54,79 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
     val listSort = mutableListOf("Sort By", "kota", "kategori")
 
     private lateinit var recycleviewPencarian: RecyclerView
+    private lateinit var btnReload: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pencarian_global)
         text_kosong.visibility = View.INVISIBLE
 
-        kota = intent.getStringExtra("kota")
-        kategori = intent.getStringExtra("kategori")
 
+        initExtra()
+        initViewModelDataAwal()
+        initRecycleView()
+        initSpinner()
+        initSpinnerSelected()
+        initEditText()
+        spinner_kota.setSelection(0)
+        spinner_kategori.setSelection(0)
+
+        initButton()
+
+        recycleViewOnBottom()
+    }
+
+    private fun initButton() {
+        button_back.setOnClickListener {
+            finish()
+        }
+
+        btnReload.setOnClickListener {
+            if (btnReloadReady) {
+                if (isLoadAwalOk) {
+                    Coroutines.main {
+                        val balihos =
+                            viewModel.getBaliho(
+                                kota!!,
+                                kategori!!,
+                                sortby,
+                                tambahan,
+                                page + 1,
+                                false
+                            )
+                        balihos.observe(this@PencarianGlobalActivity, Observer {
+                            for (i in it.baliho) {
+                                listBaliho.add(i!!)
+                            }
+                            balihoAdapter.sumitList(listBaliho)
+                            page = it.currentPage!!
+                        })
+                    }
+                } else {
+                    Coroutines.main {
+                        val balihos =
+                            viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, false)
+                        balihos.observe(this@PencarianGlobalActivity, Observer {
+                            for (i in it.baliho) {
+                                listBaliho.add(i!!)
+                            }
+                            balihoAdapter.sumitList(listBaliho)
+                            page = it.currentPage!!
+                            totalPage = it.lastPage!!
+                            isLoadAwalOk = true
+                        })
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    private fun initViewModelDataAwal() {
         viewModel = ViewModelProviders.of(this, factory).get(PencarianGlobalViewModel::class.java)
         viewModel.pencarianListener = this
+        btnReload = findViewById(R.id.reload_bottom)
 
         Coroutines.main {
             val balihos = viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, true)
@@ -72,22 +137,14 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                 balihoAdapter.sumitList(listBaliho)
                 page = it.currentPage!!
                 totalPage = it.lastPage!!
+                isLoadAwalOk = true
             })
         }
+    }
 
-        initRecycleView()
-        initSpinner()
-        initSpinnerSelected()
-        initEditText()
-
-        spinner_kota.setSelection(0)
-        spinner_kategori.setSelection(0)
-
-        button_back.setOnClickListener {
-            finish()
-        }
-
-        recycleViewOnBottom()
+    private fun initExtra() {
+        kota = intent.getStringExtra("kota")
+        kategori = intent.getStringExtra("kategori")
     }
 
 
@@ -323,9 +380,11 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
     }
 
     override fun onLoadMore() {
-
+        btnReloadReady = false
         Coroutines.main {
             shimmer_layout2.visibility = View.VISIBLE
+            progress_loading_bottom.visibility = View.VISIBLE
+            reload_bottom.visibility = View.GONE
             shimmer_list.startShimmer()
         }
 
@@ -342,12 +401,28 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
         }
     }
 
+    override fun onTimeOut(message: String) {
+        btnReloadReady = true
+        Coroutines.main {
+            shimmer_layout.visibility = View.GONE
+            shimmer_layout2.visibility = View.VISIBLE
+            progress_loading_bottom.visibility = View.INVISIBLE
+            reload_bottom.visibility = View.VISIBLE
+        }
+    }
+
     override fun onFailure(message: String) {
+        btnReloadReady = true
         root_layout.snackbar(message)
         Coroutines.main {
+            shimmer_layout.visibility = View.GONE
             recycle_view_pencarian.visibility = View.VISIBLE
             shimmer_layout.visibility = View.GONE
             shimmer_list.stopShimmer()
+
+            shimmer_layout2.visibility = View.VISIBLE
+            progress_loading_bottom.visibility = View.INVISIBLE
+            reload_bottom.visibility = View.VISIBLE
         }
     }
 
@@ -386,8 +461,6 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                                     balihoAdapter.sumitList(listBaliho)
                                     page = it.currentPage!!
                                 })
-
-
                             }
                         }
                     }
