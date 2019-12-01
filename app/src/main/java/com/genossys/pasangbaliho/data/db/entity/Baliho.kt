@@ -22,17 +22,26 @@ data class Baliho(
     @SerializedName("ukuran_baliho")
     val ukuranBaliho: String?,
 
+    @SerializedName("nama_provinsi")
     val provinsi: String?,
+
+    @SerializedName("nama_kota")
     val kota: String?,
+
     val alamat: String?,
     val latitude: String?,
-    val logitude: String?,
+    val longitude: String?,
+    val orientasi: String?,
+    val venue: String?,
+    val lebar: Int?,
+    val tinggi: Int?,
+    val luas: Int?,
 
-    @SerializedName("min_harga")
-    val minHarga: Int?,
+    @SerializedName("harga_client")
+    val hargaClient: Int?,
 
-    @SerializedName("max_harga")
-    val maxHarga: Int?,
+    @SerializedName("harga_market")
+    val hargaMarket: Int?,
 
     val deskripsi: String?,
 

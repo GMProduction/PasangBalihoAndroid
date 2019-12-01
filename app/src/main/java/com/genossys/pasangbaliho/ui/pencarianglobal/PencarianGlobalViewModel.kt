@@ -29,6 +29,7 @@ class PencarianGlobalViewModel(
         kota: String,
         kategori: String,
         sortby: String,
+        urutan: String,
         tambahan: String,
         page: Int,
         awal: Boolean
@@ -44,7 +45,7 @@ class PencarianGlobalViewModel(
         job = Coroutines.io {
             try {
                 val balihosResponse =
-                    repository.getDaListBalihoSearchGlobal(kota, kategori, sortby, tambahan, page)
+                    repository.getDaListBalihoSearchGlobal(kota, kategori, sortby, urutan, tambahan, page)
                 balihosResponse.baliho.let {
                     baliho.postValue(it)
                     if (it.baliho.isEmpty()) {

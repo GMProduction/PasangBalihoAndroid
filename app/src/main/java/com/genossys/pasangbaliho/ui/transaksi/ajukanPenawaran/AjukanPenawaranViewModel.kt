@@ -42,7 +42,8 @@ class AjukanPenawaranViewModel(
         id_baliho: Int,
         id_advertiser: Int,
         tgl_awal: String,
-        tgl_akhir: String
+        tgl_akhir: String,
+        apiToken: String
     ): MutableLiveData<PostResponse> {
         job = Job()
         val responsePost = MutableLiveData<PostResponse>()
@@ -54,7 +55,8 @@ class AjukanPenawaranViewModel(
                         id_baliho,
                         id_advertiser,
                         tgl_awal,
-                        tgl_akhir
+                        tgl_akhir,
+                        apiToken
                     )
                 )
                 withContext(Dispatchers.Main) {

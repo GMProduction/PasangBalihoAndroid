@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_template"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -18,8 +19,8 @@
             android:id="@+id/image_temp_utama"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@color/backdrop" />
+            android:scaleType="centerCrop"
+            android:src="@mipmap/noimage" />
     </androidx.cardview.widget.CardView>
 
 
@@ -28,33 +29,73 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
-        android:maxLines="2"
-        android:text="Alamat"
+        android:fontFamily="@font/poppinsbold"
+        android:maxLines="1"
         android:textColor="@color/textColorDark"
-        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/card_temp_utama"
         app:layout_constraintStart_toStartOf="@+id/card_temp_utama"
         app:layout_constraintTop_toBottomOf="@id/card_temp_utama" />
 
     <TextView
-        android:id="@+id/text_keterangan_temp_utama"
+        android:id="@+id/text_orientasi_dan_ukuran"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_text_temp_utama"
-        android:maxLines="4"
-        android:text="Keterangan"
-        app:layout_constraintEnd_toEndOf="@id/card_temp_utama"
-        app:layout_constraintStart_toStartOf="@+id/card_temp_utama"
+        android:fontFamily="@font/poppinsregular"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="@color/textColorDark"
+        android:textSize="@dimen/fontTemp"
+        app:layout_constraintEnd_toEndOf="@id/text_alamat_temp_utama"
+        app:layout_constraintStart_toStartOf="@+id/text_alamat_temp_utama"
         app:layout_constraintTop_toBottomOf="@id/text_alamat_temp_utama" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/text_deskripsi"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:maxLines="2"-->
+    <!--        android:text=""-->
+    <!--        android:fontFamily="@font/poppinsregular"-->
+    <!--        android:textColor="@color/textColorDark"-->
+    <!--        android:textSize="@dimen/fontTemp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/text_orientasi_dan_ukuran"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/text_orientasi_dan_ukuran"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/text_orientasi_dan_ukuran" />-->
+
+    <TextView
+        android:id="@+id/text_harga"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_menu_utama"
+        android:layout_marginEnd="@dimen/margin_default_menu_utama_kecil"
+        android:fontFamily="@font/poppinsregular"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="@color/textColorDark"
+        android:textSize="@dimen/fontTemp"
+        app:layout_constraintEnd_toStartOf="@id/button_temp_utama"
+        app:layout_constraintStart_toEndOf="@id/logo_plushminus"
+        app:layout_constraintTop_toBottomOf="@id/text_orientasi_dan_ukuran" />
+
+    <ImageView
+        android:id="@+id/logo_plushminus"
+        android:layout_width="8dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/plusminus"
+        app:layout_constraintBottom_toBottomOf="@id/text_harga"
+        app:layout_constraintStart_toStartOf="@+id/text_orientasi_dan_ukuran"
+        app:layout_constraintTop_toTopOf="@id/text_harga" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_temp_utama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_text_temp_utama"
+        android:fontFamily="@font/poppinsregular"
         android:text="Detail"
         app:layout_constraintEnd_toEndOf="@id/card_temp_utama"
-        app:layout_constraintTop_toBottomOf="@id/text_keterangan_temp_utama" />
+        app:layout_constraintTop_toBottomOf="@id/text_orientasi_dan_ukuran" />
 
     <View
         android:layout_width="0dp"

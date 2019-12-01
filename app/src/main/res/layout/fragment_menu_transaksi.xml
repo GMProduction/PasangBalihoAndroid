@@ -19,9 +19,9 @@
 
         <ImageView
             android:id="@+id/image_kosong"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@color/backdrop"
+            android:layout_width="@dimen/gambarkosong"
+            android:layout_height="@dimen/gambarkosong"
+            android:src="@mipmap/kosong"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +36,10 @@
             app:layout_constraintStart_toStartOf="@+id/image_kosong"
             app:layout_constraintEnd_toEndOf="@+id/image_kosong"
             android:layout_marginTop="@dimen/margin_default_menu_utama"
+            android:textSize="@dimen/text_kosong"
             android:fontFamily="@font/poppinsbold"
-            android:text="Tidak ada transaksi "/>
+            android:textColor="@color/textColorDark"
+            android:text="Tidak ada transaksi di sini... "/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include layout="@layout/loading_mid_layout"/>

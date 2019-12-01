@@ -3,6 +3,7 @@ package com.genossys.pasangbaliho.ui.detail.maps
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.genossys.pasangbaliho.R
+import com.genossys.pasangbaliho.ui.splashScreen.SplashScreen
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback
 import com.google.android.gms.maps.StreetViewPanorama
@@ -37,5 +38,9 @@ class StreetViewDetailActivity : AppCompatActivity(), OnStreetViewPanoramaReadyC
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun onResume() {
+        super.onResume()
+        SplashScreen.STATE_ACTIVITY = "StreetViewDetailActivity"
 
+    }
 }

@@ -5,21 +5,22 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 class AdapterMenuTransaksi(fm: FragmentManager) :
-    FragmentPagerAdapter(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> MenuTransaksiFragment("permintaan")
             1 -> MenuTransaksiFragment("negoharga")
             2 -> MenuTransaksiFragment("negomateri")
             3 -> MenuTransaksiFragment("pembayaran")
+            4 -> MenuTransaksiFragment("selesai")
             else -> {
-                return MenuTransaksiFragment("selesai")
+                return MenuTransaksiFragment("batal")
             }
         }
     }
 
     override fun getCount(): Int {
-        return 5
+        return 6
     }
 
     override fun getPageTitle(position: Int): CharSequence {
@@ -28,8 +29,9 @@ class AdapterMenuTransaksi(fm: FragmentManager) :
             1 -> "Negosiasi Harga"
             2 -> "Negosiasi materi"
             3 -> "pembayaran"
+            4 -> "selesai"
             else -> {
-                return "Selesai"
+                return "batal"
             }
         }
     }

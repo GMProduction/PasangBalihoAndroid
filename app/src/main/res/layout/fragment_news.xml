@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.news.NewsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_default_menu_utama"
+        android:background="@color/frontdrop"
+        android:padding="@dimen/margin_default_menu_utama"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_nama"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:maxLines="2"
+            android:text="News"
+            android:textColor="@color/textColorDark"
+            android:textSize="@dimen/text_judul"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_kosong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_kosong"
+            android:layout_width="@dimen/gambarkosong"
+            android:layout_height="@dimen/gambarkosong"
+            android:src="@mipmap/kosong"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.40" />
+
+        <TextView
+            android:id="@+id/text_kosong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_menu_utama"
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="@dimen/text_kosong"
+            android:text="Belum ada berita nih... "
+            android:textColor="@color/textColorDark"
+            app:layout_constraintEnd_toEndOf="@+id/image_kosong"
+            app:layout_constraintStart_toStartOf="@+id/image_kosong"
+            app:layout_constraintTop_toBottomOf="@+id/image_kosong" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view_news"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_default_menu_utama"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+    <include layout="@layout/loading_mid_layout" />
+</androidx.constraintlayout.widget.ConstraintLayout>

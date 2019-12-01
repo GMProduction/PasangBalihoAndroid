@@ -6,6 +6,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.genossys.pasangbaliho.R
+import com.genossys.pasangbaliho.ui.splashScreen.SplashScreen
 import kotlinx.android.synthetic.main.activity_street_web_view.*
 
 
@@ -24,14 +25,19 @@ class StreetWebViewActivity : AppCompatActivity() {
                 return true
             }
         }
-        val streetWeb = intent.getStringExtra("streetView")
+        val streetWeb = intent.getIntExtra("streetView", 0)
         text_nama.text = intent.getStringExtra("alamat")
 
-        mywebview!!.loadUrl(streetWeb)
+        mywebview!!.loadUrl("http://genossys.site/showStreetView/$streetWeb")
         button_back.setOnClickListener {
             finish()
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        SplashScreen.STATE_ACTIVITY = "StreetWebViewActivity"
+
+    }
 
 }

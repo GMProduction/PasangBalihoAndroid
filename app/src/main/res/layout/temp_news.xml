@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_temp_utama"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tinggi_gambar_news"
+        android:layout_margin="@dimen/margin_gambar_temp_utama"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@color/backdrop" />
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/text_tittle_news"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+        android:maxLines="2"
+        android:text="Tittile"
+        android:textColor="@color/textColorDark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/card_temp_utama"
+        app:layout_constraintStart_toStartOf="@+id/card_temp_utama"
+        app:layout_constraintTop_toBottomOf="@id/card_temp_utama" />
+
+    <TextView
+        android:id="@+id/text_isi_news"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_text_temp_utama"
+        android:maxLines="4"
+        android:text=""
+        android:textColor="@color/textColorDark"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/text_tittle_news"
+        app:layout_constraintStart_toStartOf="@+id/text_tittle_news"
+        app:layout_constraintTop_toBottomOf="@id/text_tittle_news" />
+
+    <TextView
+        android:id="@+id/text_created_at"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_text_temp_utama"
+        android:gravity="start"
+        android:maxLines="4"
+        android:textColor="@color/textColorDark"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_news"
+        app:layout_constraintEnd_toStartOf="@+id/button_news"
+        app:layout_constraintStart_toStartOf="@id/text_isi_news" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_text_temp_utama"
+        android:text="Detail"
+        app:layout_constraintEnd_toEndOf="@id/card_temp_utama"
+        app:layout_constraintTop_toBottomOf="@id/text_isi_news" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_view_temp_utama"
+        android:background="@color/backdrop"
+        app:layout_constraintEnd_toEndOf="@+id/card_temp_utama"
+        app:layout_constraintStart_toStartOf="@+id/card_temp_utama"
+        app:layout_constraintTop_toBottomOf="@+id/button_news" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

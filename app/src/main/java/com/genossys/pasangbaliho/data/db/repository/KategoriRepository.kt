@@ -2,8 +2,8 @@ package com.genossys.pasangbaliho.data.db.repository
 
 import com.genossys.pasangbaliho.data.db.PasangBalihoDb
 import com.genossys.pasangbaliho.data.db.response.KategoriResponse
-import com.genossys.pasangbaliho.data.network.Api.ApiService
-import com.genossys.pasangbaliho.data.network.Api.SafeApiRequest
+import com.genossys.pasangbaliho.data.network.api.ApiService
+import com.genossys.pasangbaliho.data.network.api.SafeApiRequest
 
 class KategoriRepository(
     val api: ApiService,

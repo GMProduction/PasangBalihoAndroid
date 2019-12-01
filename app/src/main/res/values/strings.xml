@@ -6,8 +6,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="email_hint">email</string>
-    <string name="password_hint">password</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
     <string name="sign_in_label">sign in</string>
     <string name="sign_up_label">sign up</string>
     <string name="or">OR</string>
@@ -17,4 +17,16 @@
     <string name="gambar_slider">gambar slider</string>
     <string name="title_activity_detail_maps">Map</string>
     <string name="title_activity_street_view_detail">Map</string>
+    <string name="default_notification_channel_id">1</string>
+    <string name="text_chat_nego">Saya%20ingin%20nego,%20dengan%20nomor%20transaksi:</string>
+    <string name="text_chat_negomateri">Saya%20lampirkan%20materi%20iklan%20dengan%20nomor%20transaksi:</string>
+    <string name="text_email_negomateri">Saya lampirkan materi iklan dengan nomor transaksi:</string>
+    <string name="image_dialog_center">image_dialog_center</string>
+    <string name="nama_hint">Nama</string>
+    <string name="nama_phone">Phone</string>
+    <string name="nama_alamat">Alamat</string>
+    <string name="konfirmasi_password_hint">Konfirmasi Password</string>
+    <string name="image_transaksi">image transaksi</string>
+    <string name="title_news">news</string>
+    <string name="title_account">Account</string>
 </resources>

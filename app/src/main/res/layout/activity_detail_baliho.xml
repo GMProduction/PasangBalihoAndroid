@@ -29,9 +29,9 @@
             android:id="@+id/text_nama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/textColorDark"
             android:fontFamily="@font/poppinsbold"
             android:maxLines="1"
+            android:textColor="@color/textColorDark"
             android:textSize="@dimen/text_judul"
             app:layout_constraintBottom_toBottomOf="@+id/button_back"
             app:layout_constraintStart_toEndOf="@+id/button_back"
@@ -50,161 +50,292 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:clipToPadding="false"
-                android:overScrollMode="always"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/indicator"
-                style="@style/CustomCirclePageIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:padding="20dp"
-                app:centered="true"
-                app:layout_constraintBottom_toBottomOf="@id/pager"
-                app:layout_constraintEnd_toEndOf="@id/pager"
-                app:layout_constraintStart_toStartOf="@+id/pager"
-                app:snap="false" />
-
-            <TextView
-                android:id="@+id/text_harga"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_default_menu_utama"
-                android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                android:fontFamily="@font/poppinsbold"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/pager"
-                app:layout_constraintTop_toBottomOf="@+id/pager" />
-
-            <View
-                android:id="@+id/batas_text_harga"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/margin_default_menu_utama"
-                android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                android:background="@color/backdrop"
-                app:layout_constraintTop_toBottomOf="@id/text_harga" />
-
-            <TextView
-                android:id="@+id/judul_lokasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default_menu_utama"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Lokasi"
-                android:textColor="@color/textColorDark"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/batas_text_harga" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_map"
-                style="@style/IconOnlyButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                app:icon="@drawable/ic_location_on_black_24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/judul_lokasi" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_360"
-                style="@style/IconOnlyButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                app:icon="@drawable/ic_remove_red_eye_black_24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_map" />
-
-            <TextView
-                android:id="@+id/text_alamat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_default_menu_utama"
-                android:layout_marginTop="@dimen/margin_default_menu_utama"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                android:fontFamily="@font/poppinsregular"
-                android:maxLines="3"
-                app:layout_constraintEnd_toStartOf="@+id/button_map"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/judul_lokasi" />
-
-            <TextView
-                android:id="@+id/text_kota"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_default_menu_utama"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                android:fontFamily="@font/poppinsregular"
-                app:layout_constraintEnd_toStartOf="@+id/button_map"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_alamat" />
-
-            <TextView
-                android:id="@+id/text_provinsi"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_isi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_default_menu_utama"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                android:layout_marginBottom="@dimen/margin_default_menu_utama"
-                android:fontFamily="@font/poppinsregular"
-                app:layout_constraintTop_toBottomOf="@+id/text_kota" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <View
-                android:id="@+id/batas_text_lokasi"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/margin_default_menu_utama"
-                android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                android:background="@color/backdrop"
-                app:layout_constraintTop_toBottomOf="@id/text_provinsi" />
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="always"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/judul_spesifikasi"
+                <com.viewpagerindicator.CirclePageIndicator
+                    android:id="@+id/indicator"
+                    style="@style/CustomCirclePageIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:padding="20dp"
+                    app:centered="true"
+                    app:layout_constraintBottom_toBottomOf="@id/pager"
+                    app:layout_constraintEnd_toEndOf="@id/pager"
+                    app:layout_constraintStart_toStartOf="@+id/pager"
+                    app:snap="false" />
+
+                <TextView
+                    android:id="@+id/text_tittle_harga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="Harga"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="@+id/pager"
+                    app:layout_constraintTop_toBottomOf="@+id/pager" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/jarek_garis_dengan_text"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_tittle_harga"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_tittle_harga"
+                    app:layout_constraintTop_toTopOf="@+id/text_tittle_harga" />
+
+                <ImageView
+                    android:id="@+id/logo_plushminus"
+                    android:layout_width="8dp"
+                    android:layout_height="0dp"
+                    android:src="@mipmap/plusminus"
+                    app:layout_constraintBottom_toBottomOf="@id/text_harga"
+                    app:layout_constraintStart_toStartOf="@id/text_tittle_harga"
+                    app:layout_constraintTop_toTopOf="@id/text_harga" />
+
+                <TextView
+                    android:id="@+id/text_harga"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama_kecil"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinssemibold"
+                    android:gravity="start"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/logo_plushminus"
+                    app:layout_constraintTop_toBottomOf="@+id/text_tittle_harga" />
+
+
+                <TextView
+                    android:id="@+id/judul_lokasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="Lokasi"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="@+id/logo_plushminus"
+                    app:layout_constraintTop_toBottomOf="@+id/text_harga" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/jarek_garis_dengan_text"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/judul_lokasi"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/judul_lokasi"
+                    app:layout_constraintTop_toTopOf="@+id/judul_lokasi" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_map"
+                    style="@style/IconOutlineButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    app:icon="@drawable/ic_location_on_black_24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_alamat" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_360"
+                    style="@style/IconOutlineButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    app:icon="@drawable/ic_remove_red_eye_black_24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button_map" />
+
+                <TextView
+                    android:id="@+id/text_alamat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinsregular"
+                    android:maxLines="3"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintEnd_toStartOf="@+id/button_map"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/judul_lokasi" />
+
+                <TextView
+                    android:id="@+id/text_kota"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintEnd_toStartOf="@+id/button_map"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_alamat" />
+
+                <TextView
+                    android:id="@+id/text_provinsi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:layout_marginBottom="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintEnd_toStartOf="@id/button_360"
+                    app:layout_constraintStart_toStartOf="@id/text_kota"
+                    app:layout_constraintTop_toBottomOf="@+id/text_kota" />
+
+                <TextView
+                    android:id="@+id/judul_spesifikasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="Spesifikasi"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="@+id/text_provinsi"
+                    app:layout_constraintTop_toBottomOf="@+id/text_provinsi" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/jarek_garis_dengan_text"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/judul_spesifikasi"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/judul_spesifikasi"
+                    app:layout_constraintTop_toTopOf="@+id/judul_spesifikasi" />
+
+
+                <TextView
+                    android:id="@+id/text_orientasi_dan_ukuran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintTop_toBottomOf="@+id/judul_spesifikasi" />
+
+                <TextView
+                    android:id="@+id/text_venue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintTop_toBottomOf="@+id/text_orientasi_dan_ukuran" />
+
+                <TextView
+                    android:id="@+id/text_deskripsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintTop_toBottomOf="@+id/text_venue" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_transaksi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_deskripsi">
+
+                    <TextView
+                        android:id="@+id/judul_transaksi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_default_menu_utama"
+                        android:fontFamily="@font/poppinsbold"
+                        android:text="Baliho ini tidak tersedia tanggal"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/jarek_garis_dengan_text"
+                        android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                        android:background="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/judul_transaksi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/judul_transaksi"
+                        app:layout_constraintTop_toTopOf="@+id/judul_transaksi" />
+
+                    <TextView
+                        android:id="@+id/text_tanggal_dipesan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="tanggal"
+                        android:textColor="@color/color_danger"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/judul_transaksi" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default_menu_utama"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Spesifikasi"
-                android:textColor="@color/textColorDark"
-                app:layout_constraintTop_toBottomOf="@+id/batas_text_lokasi" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_isi">
 
-            <TextView
-                android:id="@+id/text_deskripsi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default_menu_utama"
-                android:fontFamily="@font/poppinsregular"
-                app:layout_constraintTop_toBottomOf="@+id/judul_spesifikasi" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_ajukan_penawaran"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default_menu_utama"
-                android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
-                android:text="Ajukan Penawaran"
-                app:cornerRadius="@dimen/box_radius"
-                app:layout_constraintTop_toBottomOf="@+id/text_deskripsi" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                app:layout_constraintTop_toBottomOf="@id/button_ajukan_penawaran" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_button_bawah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/frontdrop"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_ajukan_penawaran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default_menu_utama"
+            android:text="Ajukan Penawaran"
+            app:cornerRadius="@dimen/box_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <include layout="@layout/shimmer_detail_baliho" />
-    <include layout="@layout/loading_mid_layout"/>
+
+    <include layout="@layout/loading_mid_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

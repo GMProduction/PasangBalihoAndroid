@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#26a69a</color>
+    <color name="colorViewNotif">#1126a69a</color>
     <color name="colorPrimaryDark">#4D4D4D</color>
     <color name="colorAccent">#D81B60</color>
     <color name="backdrop">#dedede</color>
     <color name="frontdrop">#ffffff</color>
     <color name="textColorDark">#000</color>
     <color name="black20">#cccccc</color>
-    <color name="color_danger">#dd1111</color>
+    <color name="color_danger">#ff4444</color>
     <color name="judul_text">#000</color>
     <color name="loadingBackground">#dd000000</color>
+    <color name="warning">#ff6d00</color>
 </resources>

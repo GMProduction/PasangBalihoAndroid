@@ -3,6 +3,7 @@ package com.genossys.pasangbaliho.ui.detail.maps
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.genossys.pasangbaliho.R
+import com.genossys.pasangbaliho.ui.splashScreen.SplashScreen
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -66,5 +67,9 @@ class DetailMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        SplashScreen.STATE_ACTIVITY = "DetailMapsActivity"
 
+    }
 }

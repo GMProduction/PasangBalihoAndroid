@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.genossys.pasangbaliho.ui.sign_in.AuthViewModel" />
+            type="com.genossys.pasangbaliho.ui.auth.AuthViewModel" />
 
     </data>
 
@@ -107,6 +107,8 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:strokeColor="@color/color_danger"
+            android:textColor="@color/color_danger"
             android:layout_marginTop="4dp"
             android:text="@string/sign_in_google_label"
             app:layout_constraintEnd_toEndOf="@id/textview_or"

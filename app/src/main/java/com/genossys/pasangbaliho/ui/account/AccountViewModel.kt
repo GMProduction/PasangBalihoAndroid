@@ -3,7 +3,7 @@ package com.genossys.pasangbaliho.ui.account
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.genossys.pasangbaliho.data.db.repository.AdvertiserRepository
-import com.genossys.pasangbaliho.ui.sign_in.AuthListener
+import com.genossys.pasangbaliho.ui.auth.AuthListener
 import com.genossys.pasangbaliho.utils.ApiException
 import com.genossys.pasangbaliho.utils.Coroutines
 import com.genossys.pasangbaliho.utils.NoInternetException

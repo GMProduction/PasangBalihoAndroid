@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_height="wrap_content"
+    tools:layout_width="match_parent"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/frontdrop"
+        android:padding="@dimen/margin_default_menu_utama_besar">
+
+        <ImageView
+            android:id="@+id/image_notif"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@mipmap/vechile" />
+
+        <TextView
+            android:id="@+id/tittle_notif"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_menu_utama_besar"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Tiitle Message"
+            android:textColor="@color/textColorDark"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/image_notif"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_notif"
+            app:layout_constraintTop_toTopOf="@id/image_notif"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <TextView
+            android:id="@+id/body_notif"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:maxLines="2"
+            android:text="Body Message Body Message Body Message Body Message Body Message"
+            android:textColor="@color/textColorDark"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tittle_notif"
+            app:layout_constraintTop_toBottomOf="@id/tittle_notif"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</merge>

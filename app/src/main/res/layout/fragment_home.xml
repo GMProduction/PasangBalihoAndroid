@@ -1,45 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backdrop">
+    android:background="@color/frontdrop">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_pencarian"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_default_menu_utama"
         android:background="@color/frontdrop"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="@dimen/margin_default_menu_utama"
+        tools:layout_editor_absoluteX="-179dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
+        <TextView
+            android:id="@+id/global_pencarian"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_default_menu_utama"
+            android:layout_marginEnd="@dimen/margin_default_menu_utama"
             android:background="@drawable/background_rounded_corner"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:drawableStart="@drawable/ic_search_black_24dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/poppinsregular"
+            android:hint="Apa yang kamu cari?"
+            android:padding="@dimen/margin_default_menu_utama"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toStartOf="@+id/btn_pesanan"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/global_pencarian"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_search_black_24dp"
-                android:drawablePadding="8dp"
-                android:fontFamily="@font/poppinsregular"
-                android:hint="Apa yang anda cari?"
-                android:padding="@dimen/margin_default_menu_utama"
-                android:textSize="12dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_pesanan"
+            style="@style/IconButton"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_rounded_corner"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_info_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/global_pencarian"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/global_pencarian" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/badge_transaksi"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/badge1"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="#FFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/btn_pesanan"
+            app:layout_constraintTop_toTopOf="@+id/btn_pesanan" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_rekomendasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_menu_utama"
+        android:background="@color/frontdrop"
+        app:layout_constraintTop_toBottomOf="@+id/layout_pencarian">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/frontdrop">
+
+            <View
+                android:id="@+id/shimer_slider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/backdrop"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/shimer_kategori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+                android:background="@color/frontdrop"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/shimer_slider">
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shimer_kota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+                android:background="@color/frontdrop"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/shimer_kategori">
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="@dimen/margin_default_menu_utama"
+                    android:background="@color/backdrop" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+                android:background="@color/backdrop"
+                app:layout_constraintTop_toBottomOf="@+id/shimer_kota" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_home"
@@ -56,11 +181,12 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/slider_home"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="204dp"
                 android:background="@color/frontdrop"
                 android:clipToPadding="false"
                 android:overScrollMode="always"
-                android:paddingEnd="40dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,30 +195,20 @@
                 style="@style/CustomCirclePageIndicatorBesar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/frontdrop"
-                android:padding="8dp"
-                android:paddingStart="@dimen/margin_default_menu_utama"
-                android:paddingEnd="@dimen/margin_default_menu_utama"
-                app:centered="false"
+                android:background="@android:color/transparent"
+                android:paddingStart="@dimen/margin_default_menu_utama_besar"
+                android:paddingEnd="@dimen/margin_default_menu_utama_besar"
+                app:layout_constraintBottom_toBottomOf="@id/slider_home"
                 app:layout_constraintEnd_toEndOf="@id/slider_home"
                 app:layout_constraintStart_toStartOf="@+id/slider_home"
-                app:layout_constraintTop_toBottomOf="@id/slider_home"
                 app:snap="false" />
 
-            <View
-                android:id="@+id/view_slider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/margin_default_menu_utama"
-                android:layout_marginEnd="@dimen/margin_default_menu_utama"
-                android:background="@color/backdrop"
-                app:layout_constraintBottom_toBottomOf="@+id/indicator" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/root_layout_kategori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/view_slider">
+                app:layout_constraintTop_toBottomOf="@+id/slider_home">
 
                 <include layout="@layout/kategori_layout" />
 
@@ -135,23 +251,10 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="60dp"
                     android:background="@color/frontdrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recycle_view_rekomendasi" />
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_rekomendasi"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="@dimen/margin_default_menu_utama_besar"
-                    app:layout_constraintTop_toBottomOf="@+id/text_judul_rekomendasi">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/backdrop" />
-                </com.facebook.shimmer.ShimmerFrameLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,7 +263,8 @@
 
     </androidx.core.widget.NestedScrollView>
 
-<include layout="@layout/loading_mid_layout"/>
+
+    <include layout="@layout/loading_mid_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

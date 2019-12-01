@@ -36,12 +36,20 @@
         <item name="centered">false</item>
     </style>
 
-    <style name="IconOnlyButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="IconOutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="iconPadding">0dp</item>
         <item name="iconGravity">textStart</item>
-        <item name="rippleColor">@color/colorAccent</item>
+        <item name="rippleColor">@color/colorPrimary</item>
         <item name="android:shadowColor">@android:color/transparent</item>
         <item name="strokeColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="IconButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="rippleColor">@color/colorPrimary</item>
+        <item name="iconTint">@color/textColorDark</item>
+        <item name="android:shadowColor">@android:color/transparent</item>
     </style>
 
     <style name="IconOnlyButtonFull" parent="Widget.MaterialComponents.Button">

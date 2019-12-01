@@ -42,6 +42,7 @@
             app:boxCornerRadiusBottomStart="@dimen/box_radius"
             app:boxCornerRadiusTopEnd="@dimen/box_radius"
             app:boxCornerRadiusTopStart="@dimen/box_radius"
+            app:endIconMode="clear_text"
             app:layout_constraintBottom_toBottomOf="@+id/button_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_back"

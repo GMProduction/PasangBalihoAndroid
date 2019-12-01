@@ -1,5 +1,9 @@
 package com.genossys.pasangbaliho.ui.pencarianglobal
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,16 +12,21 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.genossys.pasangbaliho.R
 import com.genossys.pasangbaliho.data.db.entity.Baliho
-import com.genossys.pasangbaliho.ui.home.AdapterRekomendasiBaliho
+import com.genossys.pasangbaliho.ui.adapter.AdapterBaliho
 import com.genossys.pasangbaliho.ui.home.PencarianGlobalViewModelFactory
+import com.genossys.pasangbaliho.ui.splashScreen.SplashScreen
 import com.genossys.pasangbaliho.utils.Coroutines
-import com.genossys.pasangbaliho.utils.snackbar
+import com.genossys.pasangbaliho.utils.customSnackBar.ChefSnackbar
+import com.genossys.pasangbaliho.utils.firebaseServices.MyFirebaseMessagingService
+import com.genossys.pasangbaliho.utils.snackbarError
 import kotlinx.android.synthetic.main.activity_pencarian_global.*
 import kotlinx.android.synthetic.main.loading_bottom_layout.*
 import kotlinx.android.synthetic.main.shimmer_list.*
@@ -32,15 +41,16 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
 
     override val kodein by kodein()
     private val factory: PencarianGlobalViewModelFactory by instance()
-    private lateinit var balihoAdapter: AdapterRekomendasiBaliho
+    private lateinit var balihoAdapter: AdapterBaliho
     lateinit var viewModel: PencarianGlobalViewModel
 
 
     var timer = Timer()
     var kota: String? = ""
     var kategori: String? = ""
-    var sortby = "kota"
+    var sortby = "nama_kota"
     var tambahan = ""
+    var urutan = "ASC"
     var stateSelect = 0
     private var page: Int = 1
     private var totalPage: Int = 0
@@ -51,10 +61,21 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
     val listKota = mutableListOf("Semua Kota")
     val listKategori = mutableListOf("Semua Kategori")
     var listBaliho: MutableList<Baliho> = mutableListOf()
-    val listSort = mutableListOf("Sort By", "kota", "kategori")
+    private val listSort = mutableListOf("Sort By", "kota", "kategori", "termurah", "terbesar", "terkecil")
 
     private lateinit var recycleviewPencarian: RecyclerView
+    private lateinit var root: ConstraintLayout
     private lateinit var btnReload: ImageView
+
+    private val broadCastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(contxt: Context?, intent: Intent?) {
+
+            val tittle: String? = intent?.getStringExtra("tittle")
+            val body: String? = intent?.getStringExtra("body")
+
+            ChefSnackbar.make(root, R.mipmap.boyolali, tittle!!, body!!).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +83,7 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
         text_kosong.visibility = View.INVISIBLE
 
 
+        initComponent()
         initExtra()
         initViewModelDataAwal()
         initRecycleView()
@@ -74,6 +96,10 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
         initButton()
 
         recycleViewOnBottom()
+    }
+
+    private fun initComponent() {
+        root = findViewById(R.id.root_layout)
     }
 
     private fun initButton() {
@@ -90,6 +116,7 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                                 kota!!,
                                 kategori!!,
                                 sortby,
+                                urutan,
                                 tambahan,
                                 page + 1,
                                 false
@@ -105,7 +132,15 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                 } else {
                     Coroutines.main {
                         val balihos =
-                            viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, false)
+                            viewModel.getBaliho(
+                                kota!!,
+                                kategori!!,
+                                sortby,
+                                urutan,
+                                tambahan,
+                                1,
+                                false
+                            )
                         balihos.observe(this@PencarianGlobalActivity, Observer {
                             for (i in it.baliho) {
                                 listBaliho.add(i!!)
@@ -129,11 +164,12 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
         btnReload = findViewById(R.id.reload_bottom)
 
         Coroutines.main {
-            val balihos = viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, true)
+            val balihos = viewModel.getBaliho(kota!!, kategori!!, sortby, urutan, tambahan, 1, true)
             balihos.observe(this@PencarianGlobalActivity, Observer {
                 for (i in it.baliho) {
                     listBaliho.add(i!!)
                 }
+
                 balihoAdapter.sumitList(listBaliho)
                 page = it.currentPage!!
                 totalPage = it.lastPage!!
@@ -221,7 +257,15 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                     if (stateSelect == 1) {
                         Coroutines.main {
                             val balihos =
-                                viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, true)
+                                viewModel.getBaliho(
+                                    kota!!,
+                                    kategori!!,
+                                    sortby,
+                                    urutan,
+                                    tambahan,
+                                    1,
+                                    true
+                                )
                             balihos.observe(this@PencarianGlobalActivity, Observer {
                                 listBaliho.clear()
                                 initRecycleView()
@@ -259,7 +303,15 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                     if (stateSelect == 1) {
                         Coroutines.main {
                             val balihos =
-                                viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, true)
+                                viewModel.getBaliho(
+                                    kota!!,
+                                    kategori!!,
+                                    sortby,
+                                    urutan,
+                                    tambahan,
+                                    1,
+                                    true
+                                )
                             balihos.observe(this@PencarianGlobalActivity, Observer {
                                 listBaliho.clear()
                                 initRecycleView()
@@ -289,15 +341,52 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                     position: Int,
                     id: Long
                 ) {
-                    sortby = if (listSort[position] == "Sort By") {
-                        "kota"
-                    } else {
-                        listSort[position]
+                    when (listSort[position]) {
+                        "Sort By" -> {
+                            urutan = "ASC"
+                            sortby = "nama_kota"
+//                            root.snackbar(listSort[position])
+
+                        }
+                        "kota" -> {
+                            urutan = "ASC"
+                            sortby = "nama_kota"
+                        }
+                        "kategori" -> {
+                            urutan = "ASC"
+                            sortby = "kategori"
+                        }
+                        "termurah" -> {
+                            urutan = "ASC"
+                            sortby = "harga_market"
+                        }
+                        "terbesar" -> {
+                            urutan = "DESC"
+                            sortby = "luas"
+                        }
+                        "terkecil" -> {
+                            urutan = "ASC"
+                            sortby = "luas"
+                        }
+                        else -> {
+                            urutan = "ASC"
+                            sortby = "nama_kota"
+                        }
+
                     }
+
                     if (stateSelect == 1) {
                         Coroutines.main {
                             val balihos =
-                                viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, true)
+                                viewModel.getBaliho(
+                                    kota!!,
+                                    kategori!!,
+                                    sortby,
+                                    urutan,
+                                    tambahan,
+                                    1,
+                                    true
+                                )
                             balihos.observe(this@PencarianGlobalActivity, Observer {
                                 listBaliho.clear()
                                 initRecycleView()
@@ -340,7 +429,15 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                     tambahan = edittext_pencarian_global.text.toString()
                     Coroutines.main {
                         val balihos =
-                            viewModel.getBaliho(kota!!, kategori!!, sortby, tambahan, 1, true)
+                            viewModel.getBaliho(
+                                kota!!,
+                                kategori!!,
+                                sortby,
+                                urutan,
+                                tambahan,
+                                1,
+                                true
+                            )
                         balihos.observe(this@PencarianGlobalActivity, Observer {
                             listBaliho.clear()
                             for (i in it.baliho) {
@@ -363,7 +460,7 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
 
         recycleviewPencarian.apply {
             layoutManager = LinearLayoutManager(this@PencarianGlobalActivity)
-            balihoAdapter = AdapterRekomendasiBaliho()
+            balihoAdapter = AdapterBaliho()
             adapter = balihoAdapter
             isNestedScrollingEnabled = false
         }
@@ -392,6 +489,7 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
 
     override fun onSuccess() {
         Coroutines.main {
+//            root.snackbar("$urutan $sortby")
             recycle_view_pencarian.visibility = View.VISIBLE
             shimmer_layout.visibility = View.GONE
             shimmer_layout2.visibility = View.GONE
@@ -413,8 +511,8 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
 
     override fun onFailure(message: String) {
         btnReloadReady = true
-        root_layout.snackbar(message)
         Coroutines.main {
+            root.snackbarError(message)
             shimmer_layout.visibility = View.GONE
             recycle_view_pencarian.visibility = View.VISIBLE
             shimmer_layout.visibility = View.GONE
@@ -450,6 +548,7 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
                                         kota!!,
                                         kategori!!,
                                         sortby,
+                                        urutan,
                                         tambahan,
                                         page + 1,
                                         false
@@ -469,5 +568,29 @@ class PencarianGlobalActivity : PencarianGlobalListener, KodeinAware, AppCompatA
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        appContext = this
+        SplashScreen.STATE_ACTIVITY = "PencarianGlobalActivity"
+
+        LocalBroadcastManager.getInstance(this)
+            .registerReceiver(
+                broadCastReceiver,
+                IntentFilter(MyFirebaseMessagingService.NOTIF_TRANSAKSI)
+            )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LocalBroadcastManager.getInstance(this)
+            .unregisterReceiver(broadCastReceiver)
+
+    }
+
+    companion object {
+
+        var appContext: Context? = null
+
+    }
 }
 
