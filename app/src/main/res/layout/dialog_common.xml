@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_default_menu_utama_besar">
+
+        <TextView
+            android:id="@+id/judul_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Konfirmasi Pengajuan"
+            android:textColor="@color/textColorDark"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/batas_judul_konfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_default_menu_utama_kecil"
+            android:background="@color/backdrop"
+            app:layout_constraintTop_toBottomOf="@id/judul_dialog" />
+
+        <TextView
+            android:id="@+id/text_konfirmasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+            android:fontFamily="@font/poppinsregular"
+            android:text="Iklan anda akan di pasang pada tanggal:"
+            android:textColor="@color/textColorDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/batas_judul_konfirmasi" />
+
+        <TextView
+            android:id="@+id/text_konfirmasi1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_menu_utama_kecil"
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_konfirmasi" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_konfirmasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_menu_utama_besar"
+            android:text="OK"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_konfirmasi1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_batal"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_default_menu_utama_besar"
+            android:text="Batal"
+            android:textColor="@color/color_danger"
+            app:layout_constraintEnd_toStartOf="@id/button_konfirmasi"
+            app:layout_constraintTop_toTopOf="@+id/button_konfirmasi" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

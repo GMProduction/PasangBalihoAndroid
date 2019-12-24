@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_default_menu_utama">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_menu_utama"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_dialog_center"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/image_dialog_center"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.19999999"
+            android:src="@drawable/ic_warnin" />
+
+        <TextView
+            android:id="@+id/tittle_dialog_center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_menu_utama_besar"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Tiitle Message"
+            android:textColor="@color/textColorDark"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/image_dialog_center"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_dialog_center"
+            app:layout_constraintTop_toTopOf="@id/image_dialog_center"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <TextView
+            android:id="@+id/body_dialog_center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_menu_utama"
+            android:fontFamily="@font/poppinsregular"
+            android:maxLines="2"
+            android:text="Body Message Body Message Body Message Body Message Body Message"
+            android:textColor="@color/textColorDark"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tittle_dialog_center"
+            app:layout_constraintTop_toBottomOf="@id/tittle_dialog_center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_dialog_center_ya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_default_menu_utama"
+            android:text="YA"
+            app:layout_constraintEnd_toStartOf="@+id/btn_dialog_center_batal"
+            app:layout_constraintTop_toTopOf="@+id/btn_dialog_center_batal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_dialog_center_batal"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_menu_utama"
+            android:text="BATAL"
+            android:textColor="@color/color_danger"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/body_dialog_center" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
