@@ -38,10 +38,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
-                    app:cardCornerRadius="@dimen/radius_button_menu"
                     android:layout_width="@dimen/width_kategori_button"
                     android:layout_height="@dimen/height_kategori_button"
-                    android:layout_margin="@dimen/margin_menu_kategori">
+                    android:layout_margin="@dimen/margin_menu_kategori"
+                    app:cardCornerRadius="@dimen/radius_button_menu">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/kategori_billboard"
@@ -65,55 +65,90 @@
                             android:fontFamily="@font/poppinssemibold"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:textColor="@color/textColorDark"
                             android:text="Billboard"
+                            android:textColor="@color/textColorDark"
                             android:textSize="@dimen/text_size_menu_utama"
                             app:layout_constraintTop_toBottomOf="@id/kategori1" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/width_kategori_button"
+                    android:layout_height="@dimen/height_kategori_button"
+                    android:layout_margin="@dimen/margin_menu_kategori"
+                    app:cardCornerRadius="@dimen/radius_button_menu">
 
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:layout_width="@dimen/width_kategori_button"-->
-<!--                    android:layout_height="@dimen/height_kategori_button"-->
-<!--                    android:layout_margin="@dimen/margin_menu_kategori">-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/kategori_digital_display"
+                        android:layout_width="@dimen/width_kategori_button"
+                        android:layout_height="@dimen/height_kategori_button">
 
-<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                        android:id="@+id/kategori_flag"-->
-<!--                        android:layout_width="@dimen/width_kategori_button"-->
-<!--                        android:layout_height="@dimen/height_kategori_button">-->
+                        <ImageView
+                            android:id="@+id/kategori11"
+                            android:layout_width="@dimen/image_button_kategori"
+                            android:layout_height="@dimen/image_button_kategori"
+                            android:layout_marginTop="@dimen/marginTop_image"
+                            android:src="@mipmap/digitaldisplay"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/kategori4"-->
-<!--                            android:layout_width="@dimen/image_button_kategori"-->
-<!--                            android:layout_height="@dimen/image_button_kategori"-->
-<!--                            android:layout_marginTop="@dimen/marginTop_image"-->
-<!--                            android:src="@mipmap/flag"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/marginTopText"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Digital Display"
+                            android:textColor="@color/textColorDark"
+                            android:textSize="@dimen/text_size_menu_utama"
+                            app:layout_constraintTop_toBottomOf="@id/kategori11" />
 
-<!--                        <TextView-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="@dimen/marginTopText"-->
-<!--                            android:fontFamily="@font/poppinsregular"-->
-<!--                            android:gravity="center"-->
-<!--                            android:maxLines="1"-->
-<!--                            android:textColor="@color/textColorDark"-->
-<!--                            android:text="Flag"-->
-<!--                            android:textSize="@dimen/text_size_menu_utama"-->
-<!--                            app:layout_constraintTop_toBottomOf="@id/kategori4" />-->
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--                </androidx.cardview.widget.CardView>-->
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:layout_width="@dimen/width_kategori_button"-->
+                <!--                    android:layout_height="@dimen/height_kategori_button"-->
+                <!--                    android:layout_margin="@dimen/margin_menu_kategori">-->
+
+                <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+                <!--                        android:id="@+id/kategori_flag"-->
+                <!--                        android:layout_width="@dimen/width_kategori_button"-->
+                <!--                        android:layout_height="@dimen/height_kategori_button">-->
+
+                <!--                        <ImageView-->
+                <!--                            android:id="@+id/kategori4"-->
+                <!--                            android:layout_width="@dimen/image_button_kategori"-->
+                <!--                            android:layout_height="@dimen/image_button_kategori"-->
+                <!--                            android:layout_marginTop="@dimen/marginTop_image"-->
+                <!--                            android:src="@mipmap/flag"-->
+                <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                <!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="match_parent"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_marginTop="@dimen/marginTopText"-->
+                <!--                            android:fontFamily="@font/poppinsregular"-->
+                <!--                            android:gravity="center"-->
+                <!--                            android:maxLines="1"-->
+                <!--                            android:textColor="@color/textColorDark"-->
+                <!--                            android:text="Flag"-->
+                <!--                            android:textSize="@dimen/text_size_menu_utama"-->
+                <!--                            app:layout_constraintTop_toBottomOf="@id/kategori4" />-->
+
+                <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                <!--                </androidx.cardview.widget.CardView>-->
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/width_kategori_button"
                     android:layout_height="@dimen/height_kategori_button"
-                    app:cardCornerRadius="@dimen/radius_button_menu"
-                    android:layout_margin="@dimen/margin_menu_kategori">
+                    android:layout_margin="@dimen/margin_menu_kategori"
+                    app:cardCornerRadius="@dimen/radius_button_menu">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/kategori_neon_box"
@@ -136,9 +171,9 @@
                             android:layout_marginTop="@dimen/marginTopText"
                             android:fontFamily="@font/poppinssemibold"
                             android:gravity="center"
-                            android:textColor="@color/textColorDark"
                             android:maxLines="1"
                             android:text="Neon Box"
+                            android:textColor="@color/textColorDark"
                             android:textSize="@dimen/text_size_menu_utama"
                             app:layout_constraintTop_toBottomOf="@id/kategori5" />
 
@@ -148,8 +183,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/width_kategori_button"
                     android:layout_height="@dimen/height_kategori_button"
-                    app:cardCornerRadius="@dimen/radius_button_menu"
-                    android:layout_margin="@dimen/margin_menu_kategori">
+                    android:layout_margin="@dimen/margin_menu_kategori"
+                    app:cardCornerRadius="@dimen/radius_button_menu">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/kategori_parking_spot"
@@ -173,55 +208,55 @@
                             android:fontFamily="@font/poppinssemibold"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:textColor="@color/textColorDark"
                             android:text="Parking Spot"
+                            android:textColor="@color/textColorDark"
                             android:textSize="@dimen/text_size_menu_utama"
                             app:layout_constraintTop_toBottomOf="@id/kategori6" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:layout_width="@dimen/width_kategori_button"-->
-<!--                    android:layout_height="@dimen/height_kategori_button"-->
-<!--                    android:layout_margin="@dimen/margin_menu_kategori">-->
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:layout_width="@dimen/width_kategori_button"-->
+                <!--                    android:layout_height="@dimen/height_kategori_button"-->
+                <!--                    android:layout_margin="@dimen/margin_menu_kategori">-->
 
-<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                        android:id="@+id/kategori_wall_branding"-->
-<!--                        android:layout_width="@dimen/width_kategori_button"-->
-<!--                        android:layout_height="@dimen/height_kategori_button">-->
+                <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+                <!--                        android:id="@+id/kategori_wall_branding"-->
+                <!--                        android:layout_width="@dimen/width_kategori_button"-->
+                <!--                        android:layout_height="@dimen/height_kategori_button">-->
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/kategori7"-->
-<!--                            android:layout_width="@dimen/image_button_kategori"-->
-<!--                            android:layout_height="@dimen/image_button_kategori"-->
-<!--                            android:layout_marginTop="@dimen/marginTop_image"-->
-<!--                            android:src="@mipmap/wallbranding"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+                <!--                        <ImageView-->
+                <!--                            android:id="@+id/kategori7"-->
+                <!--                            android:layout_width="@dimen/image_button_kategori"-->
+                <!--                            android:layout_height="@dimen/image_button_kategori"-->
+                <!--                            android:layout_marginTop="@dimen/marginTop_image"-->
+                <!--                            android:src="@mipmap/wallbranding"-->
+                <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                <!--                            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--                        <TextView-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="@dimen/marginTopText"-->
-<!--                            android:fontFamily="@font/poppinsregular"-->
-<!--                            android:gravity="center"-->
-<!--                            android:textColor="@color/textColorDark"-->
-<!--                            android:maxLines="1"-->
-<!--                            android:text="Wall Branding"-->
-<!--                            android:textSize="@dimen/text_size_menu_utama"-->
-<!--                            app:layout_constraintTop_toBottomOf="@id/kategori7" />-->
+                <!--                        <TextView-->
+                <!--                            android:layout_width="match_parent"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_marginTop="@dimen/marginTopText"-->
+                <!--                            android:fontFamily="@font/poppinsregular"-->
+                <!--                            android:gravity="center"-->
+                <!--                            android:textColor="@color/textColorDark"-->
+                <!--                            android:maxLines="1"-->
+                <!--                            android:text="Wall Branding"-->
+                <!--                            android:textSize="@dimen/text_size_menu_utama"-->
+                <!--                            app:layout_constraintTop_toBottomOf="@id/kategori7" />-->
 
-<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--                </androidx.cardview.widget.CardView>-->
+                <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                <!--                </androidx.cardview.widget.CardView>-->
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/width_kategori_button"
                     android:layout_height="@dimen/height_kategori_button"
-                    app:cardCornerRadius="@dimen/radius_button_menu"
-                    android:layout_margin="@dimen/margin_menu_kategori">
+                    android:layout_margin="@dimen/margin_menu_kategori"
+                    app:cardCornerRadius="@dimen/radius_button_menu">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/kategori_videotron"
@@ -245,54 +280,54 @@
                             android:fontFamily="@font/poppinssemibold"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:textColor="@color/textColorDark"
                             android:text="Videotron"
+                            android:textColor="@color/textColorDark"
                             android:textSize="@dimen/text_size_menu_utama"
                             app:layout_constraintTop_toBottomOf="@id/kategori9" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:layout_width="@dimen/width_kategori_button"-->
-<!--                    android:layout_height="@dimen/height_kategori_button"-->
-<!--                    android:layout_margin="@dimen/margin_menu_kategori">-->
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:layout_width="@dimen/width_kategori_button"-->
+                <!--                    android:layout_height="@dimen/height_kategori_button"-->
+                <!--                    android:layout_margin="@dimen/margin_menu_kategori">-->
 
-<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                        android:id="@+id/kategori_vehicle"-->
-<!--                        android:layout_width="@dimen/width_kategori_button"-->
-<!--                        android:layout_height="@dimen/height_kategori_button">-->
+                <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+                <!--                        android:id="@+id/kategori_vehicle"-->
+                <!--                        android:layout_width="@dimen/width_kategori_button"-->
+                <!--                        android:layout_height="@dimen/height_kategori_button">-->
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/kategori3"-->
-<!--                            android:layout_width="@dimen/image_button_kategori"-->
-<!--                            android:layout_height="@dimen/image_button_kategori"-->
-<!--                            android:layout_marginTop="@dimen/marginTop_image"-->
-<!--                            android:src="@mipmap/vechile"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+                <!--                        <ImageView-->
+                <!--                            android:id="@+id/kategori3"-->
+                <!--                            android:layout_width="@dimen/image_button_kategori"-->
+                <!--                            android:layout_height="@dimen/image_button_kategori"-->
+                <!--                            android:layout_marginTop="@dimen/marginTop_image"-->
+                <!--                            android:src="@mipmap/vechile"-->
+                <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                <!--                            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--                        <TextView-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="@dimen/marginTopText"-->
-<!--                            android:fontFamily="@font/poppinsregular"-->
-<!--                            android:gravity="center"-->
-<!--                            android:maxLines="1"-->
-<!--                            android:textColor="@color/textColorDark"-->
-<!--                            android:text="Vehicle"-->
-<!--                            android:textSize="@dimen/text_size_menu_utama"-->
-<!--                            app:layout_constraintTop_toBottomOf="@id/kategori3" />-->
+                <!--                        <TextView-->
+                <!--                            android:layout_width="match_parent"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_marginTop="@dimen/marginTopText"-->
+                <!--                            android:fontFamily="@font/poppinsregular"-->
+                <!--                            android:gravity="center"-->
+                <!--                            android:maxLines="1"-->
+                <!--                            android:textColor="@color/textColorDark"-->
+                <!--                            android:text="Vehicle"-->
+                <!--                            android:textSize="@dimen/text_size_menu_utama"-->
+                <!--                            app:layout_constraintTop_toBottomOf="@id/kategori3" />-->
 
-<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--                </androidx.cardview.widget.CardView>-->
+                <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                <!--                </androidx.cardview.widget.CardView>-->
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/width_kategori_button"
                     android:layout_height="@dimen/height_kategori_button"
-                    app:cardCornerRadius="@dimen/radius_button_menu"
-                    android:layout_margin="@dimen/margin_menu_kategori">
+                    android:layout_margin="@dimen/margin_menu_kategori"
+                    app:cardCornerRadius="@dimen/radius_button_menu">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/kategori_website"
@@ -316,8 +351,8 @@
                             android:fontFamily="@font/poppinssemibold"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:textColor="@color/textColorDark"
                             android:text="Website"
+                            android:textColor="@color/textColorDark"
                             android:textSize="@dimen/text_size_menu_utama"
                             app:layout_constraintTop_toBottomOf="@id/kategori10" />
 

@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.genossys.pasangbaliho.ui.home.HomeFragment"
+        android:name="com.projects.pasBal.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.genossys.pasangbaliho.ui.news.NewsFragment"
+        android:name="com.projects.pasBal.ui.news.NewsFragment"
         tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.genossys.pasangbaliho.ui.notifications.NotificationsFragment"
+        android:name="com.projects.pasBal.ui.notifications.NotificationsFragment"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_account_main"
-        android:name="com.genossys.pasangbaliho.ui.account.AccountFragment"
+        android:name="com.projects.pasBal.ui.account.AccountFragment"
         android:label="fragment_fragment_account_main"
         tools:layout="@layout/fragment_fragment_account_main" >
 
@@ -34,6 +34,6 @@
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.genossys.pasangbaliho.ui.account.AccountFragment"
+        android:name="com.projects.pasBal.ui.account.AccountFragment"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

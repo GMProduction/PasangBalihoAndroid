@@ -29,4 +29,10 @@
     <string name="image_transaksi">image transaksi</string>
     <string name="title_news">news</string>
     <string name="title_account">Account</string>
+    <string name="error_api">Terjadi kesalahan, Coba lagi nanti ya…</string>
+    <string name="error_koneksi">Internet kamu lagi bermasalah nih…</string>
+    <string name="ok">OK</string>
+    <string name="batal">Batal</string>
+    <string name="nama_instansi_hint">Nama Instansi</string>
+    <string name="syaratdanketentuan">Dengan mendaftar atau masuk di aplikasi pasang baliho, berarti anda sudah menyetujui <a href="http://wwwpasangbaliho.com/kebijakan-privasi">Syarat dan Ketentuan</a> kami</string>
 </resources>

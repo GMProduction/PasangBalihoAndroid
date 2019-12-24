@@ -9,25 +9,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/toolBarHeight"
         android:layout_marginBottom="@dimen/margin_default_menu_utama"
-        android:background="@color/frontdrop"
+        android:background="@drawable/shadow_bottom"
         android:padding="@dimen/margin_default_menu_utama"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/text_nama"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/marginstart_tittle_fragment"
             android:fontFamily="@font/poppinsbold"
-            android:maxLines="2"
             android:text="News"
             android:textColor="@color/textColorDark"
-            android:textSize="@dimen/text_judul"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/text_size_title_fragment"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -53,9 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_default_menu_utama"
             android:fontFamily="@font/poppinsbold"
-            android:textSize="@dimen/text_kosong"
             android:text="Belum ada berita nih... "
             android:textColor="@color/textColorDark"
+            android:textSize="@dimen/text_kosong"
             app:layout_constraintEnd_toEndOf="@+id/image_kosong"
             app:layout_constraintStart_toStartOf="@+id/image_kosong"
             app:layout_constraintTop_toBottomOf="@+id/image_kosong" />
@@ -68,10 +68,10 @@
         android:id="@+id/recycle_view_news"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/margin_default_menu_utama"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        android:layout_marginStart="@dimen/margin_default_menu_utama"
+        android:layout_marginEnd="@dimen/margin_default_menu_utama"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
 
     <include layout="@layout/loading_mid_layout" />

@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
                 android:gravity="center"
-                android:text="Nego Materi"
+                android:text="Pembayaran"
                 android:textColor="@color/textColorDark"
                 android:textSize="8sp"
                 app:layout_constraintEnd_toEndOf="@id/img_3"
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
                 android:gravity="center"
-                android:text="Pembayaran"
+                android:text="Nego Materi"
                 android:textColor="@color/textColorDark"
                 android:textSize="8sp"
                 app:layout_constraintEnd_toEndOf="@id/img_4"
@@ -317,60 +317,83 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default_menu_utama"
                     android:fontFamily="@font/poppinssemibold"
-                    android:text="Harga yang ditawarkan:"
+                    android:text="Kesepakatan Harga:"
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/text_detail_transaksi"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/card_image" />
 
-
-
-                    <TextView
-                        android:id="@+id/text_harga"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_rounded_corner"
-                        android:drawableStart="@drawable/ic_info_outline_black_24dp"
-                        android:drawablePadding="8dp"
-                        android:fontFamily="@font/poppinsbold"
-                        android:padding="@dimen/margin_default_menu_utama"
-                        app:layout_constraintTop_toBottomOf="@id/text_harga_yang_ditawar"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_nego"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/text_harga"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="nego"
-                    android:textSize="@dimen/text_detail_transaksi"
-                    app:layout_constraintBottom_toTopOf="@id/text_harga"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_terima"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="terima"
-                    android:textSize="@dimen/text_detail_transaksi"
-                    app:backgroundTint="@color/colorPrimary"
-                    app:layout_constraintEnd_toStartOf="@id/btn_nego"
-                    app:layout_constraintTop_toTopOf="@+id/btn_nego" />
+                    android:background="@drawable/background_rounded_corner"
+                    android:drawableStart="@drawable/ic_info_outline_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/poppinsbold"
+                    android:padding="@dimen/margin_default_menu_utama"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/text_harga_yang_ditawar" />
 
                 <TextView
-                    android:id="@+id/text_status_permintaan"
+                    android:id="@+id/status_permintaan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama"
                     android:text="status"
                     android:textColor="@color/textColorDark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_harga" />
 
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_pembayaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default_menu_utama"
+                app:layout_constraintTop_toBottomOf="@+id/layout_permintaan_harga">
+
+                <TextView
+                    android:id="@+id/text_nego_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="Pembayaran"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/jarek_garis_dengan_text"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_nego_pembayaran"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_nego_pembayaran"
+                    app:layout_constraintTop_toTopOf="@+id/text_nego_pembayaran" />
+
+                <TextView
+                    android:id="@+id/status_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default_menu_utama"
+                    android:text="status"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_nego_pembayaran" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bayarsekarang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bayar Sekarang"
+                    app:layout_constraintBottom_toBottomOf="@id/status_pembayaran"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/status_pembayaran" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -378,7 +401,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default_menu_utama"
-                app:layout_constraintTop_toBottomOf="@+id/layout_permintaan_harga">
+                app:layout_constraintTop_toBottomOf="@+id/layout_pembayaran">
 
                 <TextView
                     android:id="@+id/text_nego_materi"
@@ -445,49 +468,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_pembayaran"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_default_menu_utama"
-                app:layout_constraintTop_toBottomOf="@+id/layout_nego_materi">
-
-                <TextView
-                    android:id="@+id/text_nego_pembayaran"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppinsbold"
-                    android:text="Pembayaran"
-                    android:textColor="@color/colorPrimary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="@dimen/jarek_garis_dengan_text"
-                    android:background="@color/colorPrimary"
-                    app:layout_constraintBottom_toBottomOf="@+id/text_nego_pembayaran"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text_nego_pembayaran"
-                    app:layout_constraintTop_toTopOf="@+id/text_nego_pembayaran" />
-
-                <TextView
-                    android:id="@+id/status_pembayaran"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_default_menu_utama"
-                    android:text="status"
-                    android:textColor="@color/textColorDark"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_nego_pembayaran" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_selesai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default_menu_utama"
-                app:layout_constraintTop_toBottomOf="@+id/layout_pembayaran">
+                app:layout_constraintTop_toBottomOf="@+id/layout_nego_materi">
 
                 <TextView
                     android:id="@+id/text_selesai"

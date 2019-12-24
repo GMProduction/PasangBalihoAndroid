@@ -7,25 +7,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/toolBarHeight"
         android:layout_marginBottom="@dimen/margin_default_menu_utama"
-        android:background="@color/frontdrop"
+        android:background="@drawable/shadow_bottom"
         android:padding="@dimen/margin_default_menu_utama"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/text_nama"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/marginstart_tittle_fragment"
             android:fontFamily="@font/poppinsbold"
-            android:maxLines="2"
-            android:text="Inbox"
+            android:text="@string/title_notifications"
             android:textColor="@color/textColorDark"
-            android:textSize="@dimen/text_judul"
+            android:textSize="@dimen/text_size_title_fragment"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -38,7 +38,7 @@
             android:id="@+id/image_kosong"
             android:layout_width="@dimen/gambarkosong"
             android:layout_height="@dimen/gambarkosong"
-            android:src="@mipmap/kosong"
+            android:src="@drawable/ic_kosong"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,15 +62,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view_notif"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/margin_default_menu_utama"
+        android:layout_marginStart="@dimen/margin_default_menu_utama"
+        android:layout_marginEnd="@dimen/margin_default_menu_utama"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/pembatas_bawah"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar"/>
 
-    <View
-        android:id="@+id/pembatas_bawah"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
     <include layout="@layout/loading_mid_layout"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

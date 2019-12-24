@@ -240,7 +240,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/judul_spesifikasi" />
 
                 <TextView
-                    android:id="@+id/text_venue"
+                    android:id="@+id/text_posisi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default_menu_utama"
@@ -250,6 +250,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_orientasi_dan_ukuran" />
 
                 <TextView
+                    android:id="@+id/text_tampilan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_menu_utama"
+                    android:layout_marginEnd="@dimen/margin_default_menu_utama"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/textColorDark"
+                    app:layout_constraintTop_toBottomOf="@+id/text_posisi" />
+
+
+                <TextView
                     android:id="@+id/text_deskripsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -257,7 +268,7 @@
                     android:layout_marginEnd="@dimen/margin_default_menu_utama"
                     android:fontFamily="@font/poppinsregular"
                     android:textColor="@color/textColorDark"
-                    app:layout_constraintTop_toBottomOf="@+id/text_venue" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_tampilan" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_transaksi"
