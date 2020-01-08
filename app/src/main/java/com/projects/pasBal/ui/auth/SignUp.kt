@@ -1,10 +1,12 @@
 package com.projects.pasBal.ui.auth
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,7 @@ import com.orhanobut.dialogplus.DialogPlus
 import com.orhanobut.dialogplus.ViewHolder
 import com.projects.pasBal.R
 import com.projects.pasBal.data.db.entity.Advertiser
+import com.projects.pasBal.ui.link.Link
 import com.projects.pasBal.utils.Coroutines
 import com.projects.pasBal.utils.gotoMenuUtama
 import com.projects.pasBal.utils.isEmailValid
@@ -58,6 +61,8 @@ class SignUp : AppCompatActivity(), AuthListener, KodeinAware {
     lateinit var pgbLoading: AVLoadingIndicatorView
     lateinit var btnReload: ImageView
     lateinit var btnBack: ImageView
+    lateinit var checkBoxSyarat: CheckBox
+    lateinit var syaratdanketentuan: TextView
 
 
     //Dialog
@@ -94,6 +99,8 @@ class SignUp : AppCompatActivity(), AuthListener, KodeinAware {
         pgbLoading = findViewById(R.id.progress_loading)
         btnReload = findViewById(R.id.reload)
         btnBack = findViewById(R.id.button_back)
+        checkBoxSyarat = findViewById(R.id.checkbox_syaratketentuan)
+        syaratdanketentuan = findViewById(R.id.text_syaratketentuan)
 
         btnReload.visibility = View.GONE
         pgbLoading.visibility = View.GONE
@@ -250,14 +257,28 @@ class SignUp : AppCompatActivity(), AuthListener, KodeinAware {
 
         buttonSignUp.setOnClickListener {
             Coroutines.main {
-                if (!initTextAlamat() || !initTextEmail()
-                    || !initTextNama() || !initTextNoTelp()
-                    || !initTextNamaInstansi()
-                    || !initTextPassword() || !initTextConfirmPasswordt()
+                if (!initTextEmail() || !initTextNama() || !initTextNamaInstansi()
+                    || !initTextNoTelp() || !initTextAlamat() || !initTextPassword() || !initTextConfirmPasswordt()
                 ) {
+                    initTextEmail()
+                    initTextNama()
+                    initTextNamaInstansi()
+                    initTextNoTelp()
+                    initTextAlamat()
+                    initTextPassword()
+                    initTextConfirmPasswordt()
+
                     dialogHandler(
                         "Pendaftaran gagal",
                         "Cek kembali inputan mu...",
+//                        "Cek kembali inputan anda",
+                        R.drawable.ic_warnin,
+                        false
+                    )
+                } else if (!checkBoxSyarat.isChecked) {
+                    dialogHandler(
+                        "Pendaftaran gagal",
+                        "Anda harus menyetujui syarat dan ketentuan...",
 //                        "Cek kembali inputan anda",
                         R.drawable.ic_warnin,
                         false
@@ -284,6 +305,15 @@ class SignUp : AppCompatActivity(), AuthListener, KodeinAware {
                             }
                         })
                 }
+            }
+        }
+
+        syaratdanketentuan.setOnClickListener {
+            Intent(this, Link::class.java).also {
+                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                it.putExtra("tittle", "Syarat dan Ketentuan")
+                it.putExtra("link", "https://www.pasangbaliho.com/syarat-dan-ketentuan")
+                startActivity(it)
             }
         }
     }

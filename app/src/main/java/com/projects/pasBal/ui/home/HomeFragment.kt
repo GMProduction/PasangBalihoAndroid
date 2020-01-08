@@ -131,8 +131,6 @@ class HomeFragment : HomeListener, KodeinAware, Fragment(), GenosDialog {
             homeViewModel.getSlider().observe(this, Observer {
                 sliderList.clear()
 
-
-
                 for (i in it.slider) {
                     sliderList.add(i)
                 }

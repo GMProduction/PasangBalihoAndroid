@@ -17,8 +17,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.button.MaterialButton
-import com.orhanobut.dialogplus.DialogPlus
-import com.orhanobut.dialogplus.ViewHolder
 import com.projects.pasBal.R
 import com.projects.pasBal.data.network.api.URL_FOTO
 import com.projects.pasBal.ui.detail.DetailBalihoActivity
@@ -73,14 +71,6 @@ class DetailTransaksi : AppCompatActivity(), CommonListener, KodeinAware, GenosD
     private lateinit var img5: ImageView
     private lateinit var imageTransaksi: ImageView
     private lateinit var btnReload: ImageView
-
-    //Dialog
-    var dialog: DialogPlus? = null
-    private lateinit var textJudulDialog: TextView
-    private lateinit var textKonfirmasiDialog: TextView
-    private lateinit var textKonfirmasiDialog1: TextView
-    private lateinit var btnBatalDialog: MaterialButton
-    private lateinit var btnKonfirmasiDialog: MaterialButton
 
     private val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(contxt: Context?, intent: Intent?) {
@@ -240,38 +230,6 @@ class DetailTransaksi : AppCompatActivity(), CommonListener, KodeinAware, GenosD
                 loadData()
             })
         }
-    }
-
-    private fun dialogHandler(text: String) {
-        dialog = DialogPlus.newDialog(this)
-            .setContentHolder(ViewHolder(R.layout.dialog_common))
-            .setContentBackgroundResource(R.drawable.background_rounded2_corner)
-            .setOnItemClickListener { dialog, item, view, position -> }
-            .setPadding(8, 8, 8, 8)
-            .create()
-
-        val textJudul = "Konfirmasi Penawaran"
-        val textKonfirmasi = "Anda akan menerima penawaran dari admin dengan harga:"
-        val textButton = "Terima"
-        textKonfirmasiDialog = dialog?.holderView!!.findViewById(R.id.text_konfirmasi)
-        textKonfirmasiDialog1 = dialog?.holderView!!.findViewById(R.id.text_konfirmasi1)
-        textJudulDialog = dialog?.holderView!!.findViewById(R.id.judul_dialog)
-        btnBatalDialog = dialog?.holderView!!.findViewById(R.id.button_batal)
-        btnKonfirmasiDialog = dialog?.holderView!!.findViewById(R.id.button_konfirmasi)
-        textKonfirmasiDialog1.text = text
-        textKonfirmasiDialog.text = textKonfirmasi
-        textJudulDialog.text = textJudul
-        btnKonfirmasiDialog.text = textButton
-
-        btnBatalDialog.setOnClickListener {
-            dialog?.dismiss()
-        }
-
-        btnKonfirmasiDialog.setOnClickListener {
-            terimapenawaran()
-            dialog?.dismiss()
-        }
-        dialog?.show()
     }
 
     private fun statePermintaan() {

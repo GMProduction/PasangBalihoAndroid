@@ -35,4 +35,5 @@
     <string name="batal">Batal</string>
     <string name="nama_instansi_hint">Nama Instansi</string>
     <string name="syaratdanketentuan">Dengan mendaftar atau masuk di aplikasi pasang baliho, berarti anda sudah menyetujui <a href="http://wwwpasangbaliho.com/kebijakan-privasi">Syarat dan Ketentuan</a> kami</string>
+    <string name="syaratdanketentuansignup">Saya telah menyetujui <a href="http://wwwpasangbaliho.com/kebijakan-privasi">Syarat dan Ketentuan</a></string>
 </resources>

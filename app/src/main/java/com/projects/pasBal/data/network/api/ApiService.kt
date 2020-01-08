@@ -15,6 +15,13 @@ const val URL_FOTO: String = "$URL_API/assets/original/"
 const val URL_THUMBNAIL: String = "$URL_API/assets/thumbnails/"
 const val URL_SLIDER: String = "$URL_API/assets/slider/"
 
+const val URL_RESPONSE: String = "$URL_API/payment/"
+const val URL_BACKEND: String = "$URL_API/payment/"
+const val LANG: String = "UTF-8"
+const val CURRENCY: String = "IDR"
+const val MERCHANT_CODE: String = "ID01270"
+const val MERCHANT_KEY: String = "5Z1cr9UxDk"
+
 interface ApiService {
 
     //DATA USER
@@ -144,6 +151,25 @@ interface ApiService {
 
     @GET("dataAllKategori")
     suspend fun getDataAllKategori(): Response<KategoriResponse>
+
+    @FormUrlEncoded
+    @POST("https://sandbox.ipay88.co.id/epayment/entry.asp")
+    suspend fun pembayaran(
+        @Field("MerchantCode") MerchantCode: String,
+        @Field("PaymentId") PaymentId: Int,
+        @Field("RefNo") RefNo: String,
+        @Field("Amount") Amount: Int,
+        @Field("Currency") Currency: String,
+        @Field("ProdDesc") ProdDesc: String,
+        @Field("UserName") UserName: String,
+        @Field("UserEmail") UserEmail: String,
+        @Field("UserContact") UserContact: String,
+        @Field("Remark") Remark: String,
+        @Field("Lang") Lang: String,
+        @Field("Signature") Signature: String,
+        @Field("ResponseURL") ResponseURL: String,
+        @Field("BackendURL") BackendURL: String
+    ): Response<PostResponse>
 
     companion object {
         operator fun invoke(
